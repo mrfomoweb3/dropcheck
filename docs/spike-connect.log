@@ -1,0 +1,42 @@
+## 1. identity
+genesis 0xd4f9acbcf7f52388d8b095abe3c198d19fc510e0343e643e87cfbccb155283bd
+spec portaldot-v3 3002
+chain PortaldotV3 Test
+properties {"isEthereum":false,"ss58Format":"42","tokenDecimals":["14"],"tokenSymbol":["tPOT"]}
+pallets 69
+header 200975
+## 2. constants
+ED 10000000000000
+blockWeights.maxBlock {"refTime":"2,000,000,000,000","proofSize":"18,446,744,073,709,551,615"}
+utility.batchedCallsLimit 10922
+assets.assetDeposit 100000000000000
+assets.assetAccountDeposit 100000000000000
+assets.metadataDepositBase 10000000000000
+assets.metadataDepositPerByte 6000000000000
+assets.stringLimit 50
+## 3. calls
+balances.transfer false
+balances.transferKeepAlive true
+balances.transferAllowDeath true
+assets.create true
+assets.setMetadata true
+assets.mint true
+assets.transferKeepAlive true
+assets.transfer true
+assets.touch true
+assets.touchOther true
+utility.batchAll true
+utility.forceBatch true
+runtime apis core,metadata,runtimeViewFunction,blockBuilder,taggedTransactionQueue,offchainWorkerApi,grandpaApi,nominationPoolsApi,stakingApi,babeApi,authorityDiscoveryApi,oracleApi,accountNonceApi,assetsApi,contractsApi,transactionPaymentApi,assetConversionApi,transactionPaymentCallApi,nftsApi,beefyApi,mmrApi,mixnetApi,sessionKeys,transactionStorageApi,genesisBuilder,reviveApi
+reviveApi methods ethBlock,ethBlockHash,ethReceiptData,blockGasLimit,maxExtrinsicWeightInGas,balance,gasPrice,nonce,call,instantiate,ethTransact,ethTransactWithConfig,ethEstimateGas,ethPreDispatchWeight,uploadCode,getStorage,getStorageVarKey,traceBlock,traceTx,traceCall,traceCallWithConfig,blockAuthor,address,accountId,runtimePalletsAddress,code,newBalanceWithDust,versionDeclarations,ethBlockVersioned,ethBlockHashVersioned,ethReceiptDataVersioned,blockGasLimitVersioned,maxExtrinsicWeightInGasVersioned,balanceVersioned,gasPriceVersioned,nonceVersioned,callVersioned,instantiateVersioned,ethTransactVersioned,ethEstimateGasVersioned,ethPreDispatchWeightVersioned,uploadCodeVersioned,getStorageVersioned,runtimePalletsAddressVersioned,codeVersioned,accountIdVersioned,newBalanceWithDustVersioned,blockAuthorVersioned,addressVersioned,traceBlockVersioned,traceTxVersioned,traceCallVersioned
+system_dryRun true
+rpc count 135
+revive storage palletVersion,pristineCode,codeInfoOf,accountInfoOf,nativeDepositOf,immutableDataOf,deletionQueue,deletionQueueCounter,originalAccount,ethereumBlock,blockHash,receiptInfoData,ethBlockBuilderIR,ethBlockBuilderFirstValues,debugSettingsOf
+assets storage palletVersion,asset,account,approvals,metadata,reserves,nextAssetId
+assets errors BalanceLow,NoAccount,NoPermission,Unknown,Frozen,InUse,BadWitness,MinBalanceZero,UnavailableConsumer,BadMetadata,Unapproved,WouldDie,AlreadyExists,NoDeposit,WouldBurn,LiveAsset,AssetNotLive,IncorrectStatus,NotFrozen,CallbackFailed,BadAssetId,AssetIdAllocationFailed,ContainsFreezes,ContainsHolds,TooManyReserves,IncompleteDepositTransfer
+## 4. address mapping
+fallback 5Hfmuhj1AHrTBJiC9zUPnJo1cfG2G52LLMwofSigBnjtto8Y true
+reviveApi.address(ss58) 0xf7ec65d11e35375a250e474059a917b537804142
+Revive.OriginalAccount null
+reviveApi.accountId 5Hfmuhj1AHrTBJiC9zUPnJo1cfG2G52LLMwofSigBnjtto8Y true
+fallbackHex 0xf7ec65d11e35375a250e474059a917b537804142eeeeeeeeeeeeeeeeeeeeeeee
