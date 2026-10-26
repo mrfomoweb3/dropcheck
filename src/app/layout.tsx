@@ -14,8 +14,10 @@ export const viewport: Viewport = { width: 'device-width', initialScale: 1 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${sans.variable} ${script.variable}`}>
-      <body>{children}</body>
+    // Extensions (Grammarly, Dark Reader, wallets) add attributes to <html>/<body> before hydration.
+    // This only silences attribute mismatches on these two elements, not their children.
+    <html lang="en" className={`${sans.variable} ${script.variable}`} suppressHydrationWarning>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }
