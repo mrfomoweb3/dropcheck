@@ -1,0 +1,12 @@
+node_modules
+.next
+out
+.env
+.env.*
+!.env.example
+*.local
+*seed*
+!scripts/seed-demo.ts
+next-env.d.ts
+*.tsbuildinfo
+.vercel
