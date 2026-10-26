@@ -40,7 +40,7 @@ export function Header({ dc }: { dc: Dropcheck }) {
 }
 
 function NetworkBadge({ conn }: { conn: Dropcheck['conn'] }) {
-  if (conn.status === 'connecting') return <span className="chip bg-zinc-200 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">● connecting…</span>;
+  if (conn.status === 'connecting') return <span className="chip bg-zinc-200 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">● connecting (first load fetches ~1 MB)…</span>;
   if (conn.status === 'error') return <span className="chip bg-red-100 text-red-800 dark:bg-red-950 dark:text-red-300">● offline</span>;
   const { identity, identityOk } = conn;
   return (

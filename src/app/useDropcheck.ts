@@ -42,6 +42,32 @@ export interface DemoConfig { assetId: string; csv: string; note?: string }
 
 const toHex = (ss58: string) => u8aToHex(decodeAddress(ss58));
 
+const META_KEY = 'dropcheck.metadata';
+
+async function loadKnownMetadata(): Promise<Record<string, `0x${string}`>> {
+  const known: Record<string, `0x${string}`> = {};
+  try {
+    const cached = JSON.parse(localStorage.getItem(META_KEY) ?? 'null');
+    if (cached?.key && cached?.hex) known[cached.key] = cached.hex;
+  } catch { /* storage unavailable */ }
+  try {
+    const r = await fetch('metadata.json');
+    if (r.ok) {
+      const { key, hex } = await r.json();
+      if (key && hex) known[key] = hex;
+    }
+  } catch { /* snapshot missing: the API downloads metadata from the node */ }
+  return known;
+}
+
+function cacheMetadata(api: ApiPromise) {
+  try {
+    const key = `${api.genesisHash.toHex()}-${api.runtimeVersion.specVersion.toNumber()}`;
+    const cached = JSON.parse(localStorage.getItem(META_KEY) ?? 'null');
+    if (cached?.key !== key) localStorage.setItem(META_KEY, JSON.stringify({ key, hex: api.runtimeMetadata.toHex() }));
+  } catch { /* quota or private mode: fine */ }
+}
+
 export function useDropcheck() {
   const apiRef = useRef<ApiPromise | null>(null);
   const [conn, setConn] = useState<ConnState>({ status: 'connecting' });
@@ -68,14 +94,16 @@ export function useDropcheck() {
   const [feeError, setFeeError] = useState<string>();
   const [run, setRun] = useState<RunState>({ phase: 'idle', results: [], outcomes: {} });
 
-  // Connect (and retry).
+  // Connect (and retry). Metadata comes from the shipped snapshot or a localStorage cache when they match.
   useEffect(() => {
     let cancelled = false;
     setConn({ status: 'connecting' });
-    connect(CHAIN.wss)
+    loadKnownMetadata()
+      .then((metadata) => connect(CHAIN.wss, 90_000, metadata))
       .then(async (api) => {
         if (cancelled) { await api.disconnect(); return; }
         apiRef.current = api;
+        cacheMetadata(api);
         const identity = await readIdentity(api);
         const chk = checkIdentity(identity, { genesis: CHAIN.expectedGenesis, specName: CHAIN.expectedSpecName });
         setConn({ status: 'ready', identity, identityOk: chk.ok, problems: chk.problems });

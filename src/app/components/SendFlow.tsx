@@ -26,7 +26,7 @@ export function SummaryBar({ dc }: { dc: Dropcheck }) {
           <span className="hidden sm:inline text-zinc-400">|</span>
           <span>{formatUnits(s.totalAsset, asset.decimals)} {asset.symbol}</span>
           <span>+ {n(s.totalTopup)} {identity.symbol} top-ups</span>
-          <span className="text-zinc-500">fee {fee !== undefined ? `≈ ${n(fee)} ${identity.symbol}` : sender ? (feeError ? 'unavailable' : 'estimating…') : 'connect wallet'}</span>
+          <span className="text-zinc-500">fee {fee !== undefined ? `≈ ${n(fee)} ${identity.symbol}` : sender ? (feeError ? 'unavailable' : 'estimating…') : 'shown after wallet connects'}</span>
           <div className="ml-auto">
             {!sender ? (
               <button className="btn-primary" onClick={connectWallet}>Connect wallet to send</button>

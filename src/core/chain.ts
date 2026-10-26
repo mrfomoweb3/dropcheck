@@ -33,9 +33,17 @@ export function checkIdentity(
   return { ok: problems.length === 0, problems };
 }
 
-export async function connect(wss: string, timeoutMs = 20_000): Promise<ApiPromise> {
+/**
+ * Connect and wait until the API is ready. `metadata` is a known `${genesis}-${specVersion}` -> hex map;
+ * polkadot.js uses it only on an exact match, which skips the ~1 MB metadata download.
+ */
+export async function connect(
+  wss: string,
+  timeoutMs = 90_000,
+  metadata?: Record<string, `0x${string}`>,
+): Promise<ApiPromise> {
   const provider = new WsProvider(wss, 2_500);
-  const api = new ApiPromise({ provider, noInitWarn: true, throwOnConnect: true });
+  const api = new ApiPromise({ provider, noInitWarn: true, throwOnConnect: true, metadata });
   let timer: ReturnType<typeof setTimeout> | undefined;
   try {
     await Promise.race([

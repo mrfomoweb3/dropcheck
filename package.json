@@ -11,9 +11,12 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run tests/unit",
     "test:live": "vitest run tests/live",
-    "spike": "tsx spike/run.ts",
-    "seed-demo": "tsx scripts/seed-demo.ts",
-    "demo:headless": "tsx scripts/run-demo-headless.ts"
+    "spike": "tsx spike/connect.ts",
+    "seed-demo": "tsx --env-file=.env scripts/seed-demo.ts",
+    "demo:headless": "tsx --env-file=.env scripts/run-demo-headless.ts",
+    "spike:funded": "tsx --env-file=.env spike/funded.ts",
+    "fetch-metadata": "tsx scripts/fetch-metadata.ts",
+    "smoke": "node scripts/ui-smoke.mjs"
   },
   "dependencies": {
     "@polkadot/api": "^17.0.2",
@@ -37,6 +40,7 @@
     "eslint": "^9.39.5",
     "eslint-config-next": "^15.5.28",
     "postcss": "^8.5.31",
+    "puppeteer-core": "^25.16.0",
     "tailwindcss": "^3.4.19",
     "tsx": "^4.23.15",
     "typescript": "^5.9.3",

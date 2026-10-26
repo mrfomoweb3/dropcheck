@@ -26,8 +26,8 @@ export default function Page() {
       )}
       <RunPanel dc={dc} />
       <div className="grid flex-1 gap-4 lg:grid-cols-[22rem_1fr]">
-        <InputPanel dc={dc} />
-        <ResultsTable dc={dc} />
+        <div className="order-2 lg:order-1"><InputPanel dc={dc} /></div>
+        <div className="order-1 min-w-0 lg:order-2"><ResultsTable dc={dc} /></div>
       </div>
       <SummaryBar dc={dc} />
       <footer className="pb-24 pt-2 text-center text-xs text-zinc-500">
