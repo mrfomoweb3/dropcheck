@@ -30,7 +30,7 @@ export function CopyAddr({ value, n = 6 }: { value: string; n?: number }) {
       onClick={() => {
         navigator.clipboard?.writeText(value).then(() => { setCopied(true); setTimeout(() => setCopied(false), 1200); });
       }}
-      className="font-mono text-xs text-zinc-700 hover:text-indigo-600 dark:text-zinc-300"
+      className="font-mono text-xs text-zinc-700 hover:text-meadow-700 dark:text-zinc-300"
     >
       {copied ? 'copied ✓' : shortAddr(value, n)}
     </button>

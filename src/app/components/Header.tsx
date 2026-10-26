@@ -2,19 +2,20 @@
 import type { Dropcheck } from '../useDropcheck';
 import { CopyAddr } from './ui';
 import { formatUnits } from '@/core/units';
+import { Logo } from './Logo';
 
 export function Header({ dc }: { dc: Dropcheck }) {
   const { conn, accounts, sender, setSender, connectWallet, senderState, identity, asset } = dc;
   return (
     <header className="flex flex-wrap items-center justify-between gap-3">
-      <div>
-        <h1 className="text-xl font-bold tracking-tight">Dropcheck</h1>
-        <p className="text-sm text-zinc-500">See which token transfers would fail, then fix and send them all with one signature.</p>
+      <div className="text-white">
+        <Logo light />
+        <p className="mt-0.5 text-sm font-medium text-white/90 text-shadow">See which token transfers would fail, then fix and send them all with one signature.</p>
       </div>
       <div className="flex flex-wrap items-center gap-2">
         <NetworkBadge conn={conn} />
         {accounts ? (
-          <div className="flex items-center gap-2 rounded-lg border border-zinc-300 px-2 py-1 dark:border-zinc-700">
+          <div className="flex items-center gap-2 rounded-full border border-white/60 bg-white/85 px-3 py-1.5 backdrop-blur dark:border-zinc-700 dark:bg-zinc-900/80">
             <select
               aria-label="Sender account"
               className="max-w-[11rem] bg-transparent text-sm outline-none"

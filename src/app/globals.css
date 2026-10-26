@@ -2,11 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { color-scheme: light dark; }
-body { @apply bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 antialiased; }
-.card { @apply rounded-xl border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900; }
-.btn { @apply inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition disabled:cursor-not-allowed disabled:opacity-50; }
-.btn-primary { @apply btn bg-indigo-600 text-white hover:bg-indigo-500; }
-.btn-ghost { @apply btn border border-zinc-300 hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800; }
-.input { @apply w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/30 dark:border-zinc-700 dark:bg-zinc-950; }
+:root { color-scheme: light; }
+body { @apply bg-[#f5f4ee] font-sans text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-100; }
+
+/* Glass card over the landscape. */
+.card { @apply rounded-2xl border border-white/60 bg-white/85 shadow-[0_10px_40px_-12px_rgba(30,45,20,.35)] backdrop-blur-xl dark:border-white/10 dark:bg-zinc-900/80; }
+.btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50; }
+.btn-primary { @apply btn bg-zinc-900 text-white shadow-sm hover:bg-zinc-700 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200; }
+.btn-ghost { @apply btn border border-zinc-300/80 bg-white/60 hover:bg-white dark:border-zinc-700 dark:bg-zinc-900/60 dark:hover:bg-zinc-800; }
+.input { @apply w-full rounded-xl border border-zinc-300/80 bg-white/90 px-3 py-2 text-sm outline-none focus:border-meadow-500 focus:ring-2 focus:ring-meadow-500/30 dark:border-zinc-700 dark:bg-zinc-950/80; }
 .chip { @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold whitespace-nowrap; }
+
+/* Painted backdrop for the app page: fixed, softened so tables stay readable. */
+.app-backdrop { background: url('/landscape.jpg') center/cover fixed; }
+@media (max-width: 640px) { .app-backdrop { background-image: url('/landscape-sm.jpg'); background-attachment: scroll; } }
+.text-shadow { text-shadow: 0 2px 18px rgba(20, 35, 15, .45); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

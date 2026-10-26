@@ -25,7 +25,7 @@ export function ResultsTable({ dc }: { dc: Dropcheck }) {
       </div>
       <div className="overflow-x-auto">
         <table className="block w-full text-left text-sm sm:table">
-          <thead className="hidden sm:table-header-group bg-zinc-50 text-xs uppercase tracking-wide text-zinc-500 dark:bg-zinc-950">
+          <thead className="hidden sm:table-header-group bg-zinc-50/70 text-xs uppercase tracking-wide text-zinc-500 dark:bg-zinc-950">
             <tr>
               <th className="px-3 py-2">#</th>
               <th className="px-3 py-2">Recipient</th>
@@ -61,14 +61,14 @@ export function ResultsTable({ dc }: { dc: Dropcheck }) {
                       <div>{top.message}</div>
                       {top.fix && <div className="mt-0.5 text-zinc-500">{top.fix}</div>}
                       {(r.issues.length > 1 || r.issues.some((i) => i.why)) && (
-                        <button className="mt-1 text-indigo-600 hover:underline dark:text-indigo-400" onClick={() => setOpen(expanded ? null : r.line)}>
+                        <button className="mt-1 text-meadow-700 hover:underline dark:text-meadow-400" onClick={() => setOpen(expanded ? null : r.line)}>
                           {expanded ? 'Hide' : r.issues.length > 1 ? `Why? (+${r.issues.length - 1} more)` : 'Why?'}
                         </button>
                       )}
                     </td>
                     {sent && (
                       <td className="col-span-3 px-3 pb-2 pl-11 text-xs sm:px-3 sm:py-2">
-                        {o?.block ? <a className="text-indigo-600 hover:underline dark:text-indigo-400" href={blockLink(o.block)} target="_blank" rel="noreferrer">#{o.block}</a> : '—'}
+                        {o?.block ? <a className="text-meadow-700 hover:underline dark:text-meadow-400" href={blockLink(o.block)} target="_blank" rel="noreferrer">#{o.block}</a> : '—'}
                         {o?.after !== undefined && (
                           <div className="font-mono text-zinc-500">
                             {formatUnits(o.before ?? 0n, dec, 4)} → {formatUnits(o.after ?? 0n, dec, 4)}
@@ -78,7 +78,7 @@ export function ResultsTable({ dc }: { dc: Dropcheck }) {
                     )}
                   </tr>
                   {expanded && (
-                    <tr className="block bg-zinc-50 sm:table-row dark:bg-zinc-950">
+                    <tr className="block bg-meadow-50/60 sm:table-row dark:bg-zinc-950/60">
                       <td className="hidden sm:table-cell" />
                       <td colSpan={sent ? 5 : 4} className="block space-y-1 px-3 pb-3 pl-11 text-xs sm:table-cell sm:pl-3">
                         {ranked.map((i, k) => (

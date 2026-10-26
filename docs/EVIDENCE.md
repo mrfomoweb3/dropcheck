@@ -40,3 +40,4 @@ Status: **verified** = we ran it on V3 · **from docs** = cited source · **assu
 - Added `AMOUNT_INVALID` (missing / zero / too many decimals). §3 had no code for an unparseable amount.
 - `DECIMAL_SUSPECT` uses ≥1000× the median (spec example was ≥10^decimals × median, which is too loose to catch real mistakes) or <1 unit when every other row is whole.
 - Dry-run: `system_dryRun` needs a *signed* extrinsic. Dropcheck signs once, dry-runs those exact bytes, and broadcasts the same bytes only if the dry-run passes. That's still one signature.
+- UI is light-only by design (painted landscape theme per design reference); `dark:` styles remain for a future toggle. Spec §7 asked for light/dark.

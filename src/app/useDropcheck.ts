@@ -51,7 +51,7 @@ async function loadKnownMetadata(): Promise<Record<string, `0x${string}`>> {
     if (cached?.key && cached?.hex) known[cached.key] = cached.hex;
   } catch { /* storage unavailable */ }
   try {
-    const r = await fetch('metadata.json');
+    const r = await fetch('/metadata.json');
     if (r.ok) {
       const { key, hex } = await r.json();
       if (key && hex) known[key] = hex;
@@ -119,7 +119,7 @@ export function useDropcheck() {
 
   // Demo config (asset id + list) shipped with the site.
   useEffect(() => {
-    fetch('demo.json').then((r) => (r.ok ? r.json() : null)).then((d: DemoConfig | null) => {
+    fetch('/demo.json').then((r) => (r.ok ? r.json() : null)).then((d: DemoConfig | null) => {
       if (!d) return;
       setDemo(d);
       setAssetId((cur) => cur || d.assetId);

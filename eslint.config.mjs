@@ -10,6 +10,8 @@ const config = [
   {
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
+      // Static export: images are pre-optimized JPEGs in public/.
+      '@next/next/no-img-element': 'off',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     },
   },

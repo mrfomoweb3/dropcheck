@@ -17,7 +17,7 @@ export function SummaryBar({ dc }: { dc: Dropcheck }) {
 
   return (
     <>
-      <div className="sticky bottom-0 z-10 -mx-4 border-t border-zinc-200 bg-white/95 px-4 py-3 backdrop-blur dark:border-zinc-800 dark:bg-zinc-900/95">
+      <div className="sticky bottom-3 z-10 rounded-2xl border border-white/70 bg-white/90 px-4 py-3 shadow-[0_10px_40px_-10px_rgba(20,40,15,.45)] backdrop-blur-xl dark:border-zinc-800 dark:bg-zinc-900/90">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-4 gap-y-2 text-sm">
           <span><b>{s.recipients}</b> recipients</span>
           <span className="text-emerald-600">{s.ok} ok</span>
