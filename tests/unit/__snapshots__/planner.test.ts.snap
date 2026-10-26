@@ -1,0 +1,28 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`planner (A4) > demo list -> expected call list 1`] = `
+[
+  "topup L11 5CkCEuLL 11000000000000",
+  "topup L12 5CmWayet 11000000000000",
+  "topup L13 5Cnpw3yR 11000000000000",
+  "topup L14 5Cp9H8Hy 11000000000000",
+  "topup L15 5CqTdCcX 11000000000000",
+  "asset L2 5CHsKQwQ 125000000",
+  "asset L3 5CKBfVFw 110000000",
+  "asset L4 5CLW1ZaV 120000000",
+  "asset L5 5CMpMdu3 130000000",
+  "asset L6 5CP8hiDb 140000000",
+  "asset L7 5CQT3nY8 150000000",
+  "asset L8 5CRmPrrg 160000000",
+  "asset L9 5CT5jwBE 170000000",
+  "asset L10 5CUQ61Vm 180000000",
+  "asset L11 5CkCEuLL 50000000",
+  "asset L12 5CmWayet 50000000",
+  "asset L13 5Cnpw3yR 50000000",
+  "asset L14 5Cp9H8Hy 50000000",
+  "asset L15 5CqTdCcX 50000000",
+  "asset L16 5CyMheXo 75000000",
+  "asset L17 5Czg3irM 75000000",
+  "asset L18 5DCXAPjG 100000000",
+]
+`;
