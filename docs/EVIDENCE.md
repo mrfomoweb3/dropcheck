@@ -63,7 +63,10 @@ demo sender with 17 `assets.Transferred`, 5 `balances.Transfer`, 5 `system.NewAc
 | `pnpm test:live` is repeatable (fresh rows regenerated per run) | second run, block #338429 | verified on **live V3** |
 
 ## Bugs found by the live run (fixed 2026-11-05)
-- The first visitor UI run never confirmed its send (the node dropped sockets during the run; the status subscription
+- The first visitor UI run never confirmed its send. Read back later from chain: that send **did land** (block #337949,
+  17 `assets.Transferred`, 5 top-ups, success; create at #337945, wallet 5FPRsW…zDSf funded by the demo key at #337938).
+  So the UI missed a confirmation for a tx that was included: exactly the case the watchdog now handles.
+  (Original note:) The first visitor UI run never confirmed its send (the node dropped sockets during the run; the status subscription
   went quiet and nothing timed out). `signAndSend` now has a 60 s watchdog that scans new blocks for the tx hash.
 - After a runtime upgrade the app would have failed to connect at all (see the state_call row above). Fixed.
 - The visitor cost check used a fixed 0.15 tPOT send-fee buffer and blocked a 3 tPOT wallet that actually succeeds;

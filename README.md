@@ -13,10 +13,16 @@ Built for **Portaldot Hacker House 2026, Track 4: Ecosystem DApps**.
 
 ## Demo
 
-- **Live app:** https://dropcheck.mrfomolabs.xyz (app: https://dropcheck.mrfomolabs.xyz/app/)
-- **Demo video:** _add link_
-- **Source:** https://github.com/mrfomoweb3/dropcheck
-- **On-chain proof:** demo token **asset 895266 (DROP)** and every transaction with block links in [docs/PROOF.md](docs/PROOF.md)
+[![Watch the 48-second Dropcheck demo](docs/demo-thumbnail.jpg)](https://dropcheck.mrfomolabs.xyz/demo.mp4)
+
+**▶ [Watch the demo video (48 s, 1080p, narrated)](https://dropcheck.mrfomolabs.xyz/demo.mp4)**. Also in this repo:
+[`video/dropcheck-film/renders/dropcheck-demo.mp4`](video/dropcheck-film/renders/dropcheck-demo.mp4).
+The video shows the real app and a recorded live-V3 result (block #336227). It does not perform a new send on camera.
+
+- [x] **Live app:** https://dropcheck.mrfomolabs.xyz (app: https://dropcheck.mrfomolabs.xyz/app/)
+- [x] **Demo video:** https://dropcheck.mrfomolabs.xyz/demo.mp4
+- [x] **Source:** https://github.com/mrfomoweb3/dropcheck
+- [x] **On-chain proof:** demo token **asset 895266 (DROP)** and every transaction with block links in [docs/PROOF.md](docs/PROOF.md)
 
 | Checked before sending | After one signature |
 |---|---|
@@ -135,6 +141,7 @@ pnpm test:live   # on live V3: 1 signature → 5 top-ups + 17 transfers; appends
 | 55 recipients → 2 batches (100 + 10 calls), all 55 received | ✅ live V3 (blocks #337909, #337912) |
 | First-time visitor: Create my demo token → Fix & Send, 17 sent, 48.5 s | ✅ live V3, production UI (blocks #338420, #338422) |
 | App connects after a runtime upgrade (non-matching metadata, empty cache) | ✅ simulated against live V3: 5/5 connected in 25–40 s |
+| A send whose confirmation is lost is still reported | ✅ the problem was seen on live V3: a test send landed (block #337949, 17 transfers) while the UI never got the confirmation. The 60 s watchdog now finds the tx in the chain. The watchdog's recovery has not yet been triggered by a real dropped socket |
 | Send through a real browser extension (Talisman / SubWallet / polkadot.js) | ⏳ not yet run. The UI tests inject their own signer. The extension path uses the standard `@polkadot/extension-dapp` signer |
 | Time saved vs. sending one by one in node-console | ⏳ not measured. Any number quoted is an estimate |
 
@@ -340,6 +347,10 @@ npx tsx scripts/gen-demo-key.ts ~/.dropcheck/demo-seed
 - [x] Batches of ≤50 recipients, verified on live V3 with 55
 - [x] Visitor demo token, so anyone with tPOT can run the full demo
 - [x] Recovery from runtime upgrades and dropped node connections
+- [x] Every claim checked on live Portaldot V3, with block links in [docs/PROOF.md](docs/PROOF.md)
+- [x] Deployed at https://dropcheck.mrfomolabs.xyz
+- [x] Demo video (48 s, narrated)
+- [x] README with test script, architecture and flow diagrams
 - [ ] Verified send through each real extension (Talisman, SubWallet, polkadot.js)
 - [ ] Measured baseline vs. sending one by one in node-console
 - [ ] Fallback to a second V3 endpoint, once one exists
