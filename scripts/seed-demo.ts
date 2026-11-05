@@ -11,8 +11,10 @@ import { connect, readIdentity, checkIdentity, resolveEvm, readAccounts } from '
 import { h160FallbackAccount } from '../src/core/address.ts';
 import { signAndSend } from '../src/core/submit.ts';
 
-const DEMO_JSON = 'public/demo.json';
-const DEMO_CSV = 'public/demo-list.csv';
+// DEMO_OUT lets fork rehearsals write elsewhere instead of overwriting the shipped demo.
+const OUT = process.env.DEMO_OUT ?? 'public';
+const DEMO_JSON = `${OUT}/demo.json`;
+const DEMO_CSV = `${OUT}/demo-list.csv`;
 const DECIMALS = 6;
 const UNIT = 10n ** BigInt(DECIMALS);
 const MIN_BALANCE = 5n * UNIT;

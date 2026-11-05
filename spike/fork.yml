@@ -1,0 +1,16 @@
+# Local Chopsticks fork of Portaldot V3: same runtime wasm + live state, but local and disposable.
+# Funds the public dev account //Alice so the full send path can be exercised without real tPOT.
+# Results from the fork are labelled "fork" in docs, never "live V3".
+endpoint: wss://test-node-v3.portaldot.dev
+port: 8000
+build-block-mode: Instant
+runtime-log-level: 0
+# V3 imports statement-store host functions Chopsticks 1.5.2 lacks; stub them (our calls never use them).
+allow-unresolved-imports: true
+import-storage:
+  System:
+    Account:
+      - - - 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
+        - providers: 1
+          data:
+            free: '1000000000000000000'

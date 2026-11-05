@@ -13,11 +13,12 @@
 ## Status (2026-11-05)
 | | |
 |---|---|
-| Check engine, planner, units, address resolution | ✅ 32 unit tests (`pnpm test`) |
-| Live checks against V3 chain state (preview list on pUSD, asset 7777) | ✅ verified in the browser and headless (`pnpm demo:headless`) |
-| H160 → native mapping via `ReviveApi.account_id` | ✅ verified on V3 |
-| Fee estimate (`paymentInfo`) for the batch | ✅ verified on V3 |
-| Signed `batch_all` send on V3 (top-ups + transfers) | ⏳ **not yet run**: the demo sender has no tPOT yet. No tx hash is claimed until it has run; see [docs/PROOF.md](docs/PROOF.md) |
+| Check engine, planner, units, address resolution | ✅ 33 unit tests (`pnpm test`) |
+| Live checks against V3 chain state (preview list on pUSD, asset 7777) | ✅ verified on **live V3**, in the browser and headless |
+| H160 → native mapping via `ReviveApi.account_id` | ✅ verified on **live V3** |
+| Dry-run safety net: a failing batch is never broadcast | ✅ verified on **live V3** and on a V3 fork |
+| Full send: 1 signature → 5 top-ups + 17 transfers, fresh wallets receive the token, sender never reaped | ✅ verified on a **local fork of V3** (real V3 runtime + state; see [docs/REHEARSAL.md](docs/REHEARSAL.md)), headless and through the browser UI |
+| Same send on **live** V3 | ⏳ not yet run: the demo sender has no tPOT (no public faucet). No live tx hash is claimed until it runs; see [docs/PROOF.md](docs/PROOF.md) |
 
 ## The 30-second test
 1. Open the app. The demo list is already loaded and checked against live chain state.
@@ -76,7 +77,7 @@ pnpm test:live                # A5–A7 on V3, appends tx to docs/PROOF.md
 - One atomic batch per 50 recipients. Larger lists are split into ordered chunks, one signature each.
 
 ## Credits
-polkadot.js (`@polkadot/api`, `util`, `util-crypto`, `extension-dapp`, `keyring`), Next.js, Tailwind CSS, PapaParse, Vitest.
+polkadot.js (`@polkadot/api`, `util`, `util-crypto`, `extension-dapp`, `keyring`), Next.js, Tailwind CSS, PapaParse, Vitest, Chopsticks (fork rehearsal), Puppeteer (UI tests).
 
 ## AI assistance disclosure
 This project was built with AI assistance (Claude Code) for code, tests and docs. On-chain claims were verified by running

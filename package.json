@@ -16,7 +16,9 @@
     "demo:headless": "tsx --env-file=.env scripts/run-demo-headless.ts",
     "spike:funded": "tsx --env-file=.env spike/funded.ts",
     "fetch-metadata": "tsx scripts/fetch-metadata.ts",
-    "smoke": "node scripts/ui-smoke.mjs"
+    "smoke": "node scripts/ui-smoke.mjs",
+    "e2e:fork": "node scripts/ui-e2e-fork.mjs",
+    "failure-paths": "tsx --env-file=.env spike/failure-paths.ts"
   },
   "dependencies": {
     "@polkadot/api": "^17.0.2",

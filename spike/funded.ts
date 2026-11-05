@@ -7,7 +7,8 @@ import { cryptoWaitReady, mnemonicGenerate } from '@polkadot/util-crypto';
 import { decodeDispatchError } from '../src/core/submit.ts';
 
 const WSS = process.env.NEXT_PUBLIC_DROPCHECK_WSS ?? 'wss://test-node-v3.portaldot.dev';
-const STATE = new URL('./state.json', import.meta.url);
+// Fork runs keep separate state so they are never mistaken for live-V3 results.
+const STATE = new URL(WSS.includes('localhost') || WSS.includes('127.0.0.1') ? './state.fork.json' : './state.json', import.meta.url);
 const state: Record<string, unknown> = existsSync(STATE) ? JSON.parse(readFileSync(STATE, 'utf8')) : {};
 const save = () => writeFileSync(STATE, JSON.stringify(state, null, 2));
 

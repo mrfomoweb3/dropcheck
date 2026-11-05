@@ -21,12 +21,16 @@ Status: **verified** = we ran it on V3 · **from docs** = cited source · **assu
 | node-console is a polkadot.js Apps fork; link blocks via `#/explorer/query/<n>` | page HTML | 2026-10-26 | from page (link format **assumption** until clicked) |
 | Old `*.feso-apps.xyz` endpoints are stale | build spec | — | from docs (not re-tested) |
 | No public faucet; tPOT is distributed to registered participants / via Discord ticket | portaldot-v3-testnet-guide README | 2026-10-26 | from docs |
-| Asset transfer to an account with no native balance fails (`UnavailableConsumer` expected) | spike step 6a | — | **assumption: pending funded run** |
-| Transfer below `min_balance` to a new holder fails (`BelowMinimum` expected) | spike step 6b | — | **assumption: pending** |
-| Native transfer below ED to a new account fails (`ExistentialDeposit` expected) | spike step 6c | — | **assumption: pending** |
-| `batch_all(top-up, asset transfer)` makes a fresh account hold the asset | spike step 7 | — | **assumption: pending** |
-| Assets precompile on EVM side | spike step 8 | — | **unknown: pending** |
-| 50-recipient batch (100 calls) fits in one block | spike step 9 | — | **assumption: pending** |
+| Asset transfer to an account with no native balance fails with **`TokenError.CannotCreate`** | spike step 6a, `docs/spike-fork.log` | 2026-11-05 | verified on **V3 fork** (live: pending) |
+| Transfer below `min_balance` to a new holder fails with `TokenError.BelowMinimum` | spike step 6b | 2026-11-05 | verified on **V3 fork** |
+| Native transfer below ED to a new account fails with `TokenError.BelowMinimum` | spike step 6c | 2026-11-05 | verified on **V3 fork** |
+| `batch_all(top-up, asset transfer)` makes a fresh account hold the asset | spike step 7 | 2026-11-05 | verified on **V3 fork**; **live V3 pending funding** |
+| No ERC-20 assets precompile found on the EVM side (asset 7777, two standard address formats return `0x`) | `eth_call` on live EVM RPC | 2026-11-05 | verified (live V3) |
+| 50-recipient batch (100 calls) is included in one block: 1.8% of block refTime, fee 0.436 tPOT | spike step 9 | 2026-11-05 | verified on **V3 fork** |
+| Live test A5–A7: demo list → 1 signature → 17 asset transfers, 5 top-ups, 2 excluded, 1 merged; fresh accounts hold the asset; sender ≥ ED | `pnpm test:live` on fork | 2026-11-05 | verified on **V3 fork** (live: pending) |
+| Browser UI end to end: load list → connect wallet → Fix & Send → 1 signature → 17 rows "Sent" with block + before→after | `scripts/ui-e2e-fork.mjs` (injected test wallet, `//Alice`) | 2026-11-05 | verified on **V3 fork** (no real extension) |
+| Cancelling the signature leaves nothing sent and shows a clear message | `E2E_CANCEL=1 scripts/ui-e2e-fork.mjs` | 2026-11-05 | verified on **V3 fork** |
+| A failing batch is caught by `system_dryRun` on the signed bytes; nothing is broadcast (nonce unchanged) | `spike/failure-paths.ts` | 2026-11-05 | verified on **live V3** (unfunded key: payment invalid) and on fork (`TokenError.CannotCreate`) |
 | Baseline: node-console manual distribution of 20 rows | §11 | — | **not measured yet** |
 
 ## Problem evidence (from docs)
@@ -41,3 +45,11 @@ Status: **verified** = we ran it on V3 · **from docs** = cited source · **assu
 - `DECIMAL_SUSPECT` uses ≥1000× the median (spec example was ≥10^decimals × median, which is too loose to catch real mistakes) or <1 unit when every other row is whole.
 - Dry-run: `system_dryRun` needs a *signed* extrinsic. Dropcheck signs once, dry-runs those exact bytes, and broadcasts the same bytes only if the dry-run passes. That's still one signature.
 - UI is light-only by design (painted landscape theme per design reference); `dark:` styles remain for a future toggle. Spec §7 asked for light/dark.
+
+## Bugs found by the fork rehearsal (fixed 2026-11-05)
+- Browser ignored `NEXT_PUBLIC_DROPCHECK_*` overrides (dynamic `process.env[key]`; Next.js only inlines literal references).
+- Wallets whose state had not been read yet were classified as empty → invented top-ups (17 instead of 5), and Fix & Send
+  stayed enabled while reads and the fee estimate were in flight. Now: unread = unknown and blocks the run; the fee is bound
+  to the exact plan and sender it was estimated for.
+- Dispatch errors of type `TokenError` printed as raw JSON; now decoded (`TokenError.CannotCreate`).
+- Sender balance in the header was stale after a send; the on-chain column overflowed the table.
