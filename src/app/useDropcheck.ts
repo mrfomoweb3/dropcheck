@@ -80,6 +80,35 @@ function cacheMetadata(api: ApiPromise) {
   } catch { /* quota or private mode: fine */ }
 }
 
+interface SharedConnection {
+  wss: string;
+  promise: Promise<ApiPromise>;
+  note?: string;
+  listeners: Set<(note: string) => void>;
+}
+let shared: SharedConnection | null = null;
+
+/** Reuse the page's connection to `wss`; a failed attempt is forgotten so Retry starts fresh. */
+function sharedConnection(wss: string): SharedConnection {
+  if (shared && shared.wss === wss) return shared;
+  const prev = shared;
+  const s: SharedConnection = { wss, listeners: new Set(), promise: null as unknown as Promise<ApiPromise> };
+  s.promise = loadKnownMetadata()
+    .then((metadata) => connect(wss, 90_000, metadata, {
+      slowTimeoutMs: 300_000,
+      onProbe: (p) => {
+        if (p.metadataKnown) return;
+        s.note = `Portaldot updated the chain (runtime ${p.specVersion}). Downloading the new chain description, about 1 MB, one time only. This can take a minute or two.`;
+        s.listeners.forEach((l) => l(s.note!));
+      },
+    }))
+    .then((api) => { cacheMetadata(api); return api; })
+    .catch((e) => { if (shared === s) shared = null; throw e; });
+  shared = s;
+  prev?.promise.then((api) => api.disconnect()).catch(() => undefined);
+  return s;
+}
+
 export function useDropcheck() {
   const apiRef = useRef<ApiPromise | null>(null);
   const [conn, setConn] = useState<ConnState>({ status: 'connecting' });
@@ -107,33 +136,30 @@ export function useDropcheck() {
   const [feeError, setFeeError] = useState<string>();
   const [run, setRun] = useState<RunState>({ phase: 'idle', results: [], outcomes: {} });
 
-  // Connect (and retry). Metadata comes from the shipped snapshot or a localStorage cache when they match.
+  // Connect (and retry). One shared connection per page: React (dev Strict Mode, fast refresh, route changes)
+  // may mount this hook again, and tearing the socket down each time made polkadot.js log
+  // "subscribeRuntimeVersion ... disconnected: 1000 Normal Closure" and re-download state for nothing.
   useEffect(() => {
     let cancelled = false;
     setConn({ status: 'connecting' });
     const wss = endpointFromSearch(window.location.search);
-    loadKnownMetadata()
-      .then((metadata) => connect(wss, 90_000, metadata, {
-        slowTimeoutMs: 300_000,
-        onProbe: (p) => {
-          if (!cancelled && !p.metadataKnown) {
-            setConn({ status: 'connecting', note: `Portaldot updated the chain (runtime ${p.specVersion}). Downloading the new chain description, about 1 MB, one time only. This can take a minute or two.` });
-          }
-        },
-      }))
+    const shared = sharedConnection(wss);
+    const onNote = (note: string) => { if (!cancelled) setConn({ status: 'connecting', note }); };
+    shared.listeners.add(onNote);
+    if (shared.note) onNote(shared.note);
+    shared.promise
       .then(async (api) => {
-        if (cancelled) { await api.disconnect(); return; }
+        if (cancelled) return;
         apiRef.current = api;
-        cacheMetadata(api);
         const identity = await readIdentity(api);
         const chk = checkIdentity(identity, { genesis: CHAIN.expectedGenesis, specName: CHAIN.expectedSpecName });
-        setConn({ status: 'ready', identity, identityOk: chk.ok, problems: chk.problems });
+        if (!cancelled) setConn({ status: 'ready', identity, identityOk: chk.ok, problems: chk.problems });
       })
       .catch((e) => !cancelled && setConn({ status: 'error', error: (e as Error).message }));
     return () => {
       cancelled = true;
-      apiRef.current?.disconnect().catch(() => undefined);
-      apiRef.current = null;
+      shared.listeners.delete(onNote);
+      apiRef.current = null; // the connection itself stays open for the next mount
     };
   }, [attempt]);
   const retry = useCallback(() => setAttempt((n) => n + 1), []);
