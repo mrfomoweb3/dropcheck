@@ -13,7 +13,7 @@ Built for **Portaldot Hacker House 2026, Track 4: Ecosystem DApps**.
 
 ## Demo
 
-- **Live app:** _add Vercel URL_
+- **Live app:** https://dropcheck.mrfomolabs.xyz (app: https://dropcheck.mrfomolabs.xyz/app/)
 - **Demo video:** _add link_
 - **Source:** https://github.com/mrfomoweb3/dropcheck
 - **On-chain proof:** demo token **asset 895266 (DROP)** and every transaction with block links in [docs/PROOF.md](docs/PROOF.md)
@@ -89,7 +89,7 @@ faucet. Testnet tPOT comes through the hackathon registration form. Without tPOT
 
 ### Try this
 
-1. **Open the app** (_add Vercel URL_), or run it locally at http://localhost:3000/app/.
+1. **Open the app** at https://dropcheck.mrfomolabs.xyz/app/, or run it locally at http://localhost:3000/app/.
    *Expected:* the header shows `portaldot-v3/3002 verified`. The demo list loads and is checked against live chain state:
    10 OK, 7 auto-fixable, 2 skipped. 5 rows show **Top-up + send**, and the 2 MetaMask rows show **Resolved**.
 2. **Click "Why?"** on a red or amber row.
