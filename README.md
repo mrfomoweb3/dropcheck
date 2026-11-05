@@ -14,11 +14,11 @@
 | | |
 |---|---|
 | Check engine, planner, units, address resolution | ✅ 33 unit tests (`pnpm test`) |
-| Live checks against V3 chain state (preview list on pUSD, asset 7777) | ✅ verified on **live V3**, in the browser and headless |
-| H160 → native mapping via `ReviveApi.account_id` | ✅ verified on **live V3** |
+| Live checks against V3 chain state (demo list on DROP, asset 895266) | ✅ verified on **live V3**, in the browser and headless |
+| H160 → native mapping via `ReviveApi.account_id` | ✅ verified on **live V3** (test A2) |
 | Dry-run safety net: a failing batch is never broadcast | ✅ verified on **live V3** and on a V3 fork |
-| Full send: 1 signature → 5 top-ups + 17 transfers, fresh wallets receive the token, sender never reaped | ✅ verified on a **local fork of V3** (real V3 runtime + state; see [docs/REHEARSAL.md](docs/REHEARSAL.md)), headless and through the browser UI |
-| Same send on **live** V3 | ⏳ not yet run: the demo sender has no tPOT (no public faucet). No live tx hash is claimed until it runs; see [docs/PROOF.md](docs/PROOF.md) |
+| Full send: 1 signature → 5 top-ups + 17 transfers, fresh wallets receive the token, sender never reaped | ✅ verified on **live V3**, headless (`pnpm test:live`, block [#336184](https://node-console.portaldot.dev/?rpc=wss%3A%2F%2Ftest-node-v3.portaldot.dev#/explorer/query/336184)) and through the browser UI (block [#336227](https://node-console.portaldot.dev/?rpc=wss%3A%2F%2Ftest-node-v3.portaldot.dev#/explorer/query/336227)); see [docs/PROOF.md](docs/PROOF.md) |
+| Browser send with a real wallet extension (polkadot.js / Talisman / SubWallet) | ⏳ not yet run by us: the UI test injects its own signer. The extension path uses the standard `@polkadot/extension-dapp` signer |
 
 ## The 30-second test
 1. Open the app. The demo list is already loaded and checked against live chain state.
@@ -52,7 +52,7 @@ Evidence: [Integritee](https://hackmd.io/@brenzi5/B1jBRMUb5) · [Talisman ED doc
 See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). Static Next.js app, no backend, framework-free `src/core/`.
 
 ## On-chain proof
-Native pallets, no contract: the artifacts are the demo **asset ID** and **extrinsics**. See [docs/PROOF.md](docs/PROOF.md).
+Native pallets, no contract: the artifacts are the demo **asset ID 895266 (DROP)** and the **extrinsics** in [docs/PROOF.md](docs/PROOF.md).
 
 ## Run it
 ```bash

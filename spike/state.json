@@ -1,0 +1,100 @@
+{
+  "assetId": "39590",
+  "step5": {
+    "ok": true,
+    "block": 336162,
+    "hash": "0xb5e99bfc5c080426752c521395330534557edadf10c851e948918371125bad77",
+    "tx": "0xdf46bf1defd66242d97879c4244407c80bf199db4a7438ae3df24a99d8edc9c8",
+    "events": [
+      "balances.Withdraw",
+      "balances.Reserved",
+      "assets.Created",
+      "utility.ItemCompleted",
+      "balances.Reserved",
+      "assets.MetadataSet",
+      "utility.ItemCompleted",
+      "assets.Issued",
+      "utility.ItemCompleted",
+      "utility.BatchCompleted",
+      "balances.Deposit",
+      "transactionPayment.TransactionFeePaid",
+      "system.ExtrinsicSuccess"
+    ]
+  },
+  "step6a": {
+    "ok": false,
+    "err": "TokenError.CannotCreate",
+    "block": 336163,
+    "hash": "0x68bff521f9393914b0da46ad9153bd89e5f1a941b77822b33c603efb7c6acf32",
+    "tx": "0x5572f098e1d420c9eda468f3dbc07c804f0711dbd9e37d4b66a2645418afd6b0",
+    "events": [
+      "balances.Withdraw",
+      "balances.Deposit",
+      "transactionPayment.TransactionFeePaid",
+      "system.ExtrinsicFailed"
+    ]
+  },
+  "step6b": {
+    "ok": true,
+    "block": 336164,
+    "hash": "0x4a4ce57aa7defdce26d5c35af60ecf995f7cdda3b0ab94455255a050353b3ba3",
+    "tx": "0x7d9fe21dd09da68b89b5e0415cbfa9567e15b6f1e45ea1b02dc32fb77b9dc858",
+    "events": [
+      "balances.Withdraw",
+      "system.NewAccount",
+      "balances.Endowed",
+      "balances.Transfer",
+      "utility.ItemCompleted",
+      "utility.BatchCompleted",
+      "balances.Deposit",
+      "transactionPayment.TransactionFeePaid",
+      "system.ExtrinsicSuccess"
+    ]
+  },
+  "step6b2": {
+    "ok": false,
+    "err": "TokenError.BelowMinimum",
+    "block": 336165,
+    "hash": "0x64c98b5fd018e0c4e32cafae35857eed8b5ceae9a00c2963fadc94ab06b85bee",
+    "tx": "0x9318ac8110cf8c31de0a1acb763c2e0f3868e9e50da6f6511e5d699a93c0f22a",
+    "events": [
+      "balances.Withdraw",
+      "balances.Deposit",
+      "transactionPayment.TransactionFeePaid",
+      "system.ExtrinsicFailed"
+    ]
+  },
+  "step6c": {
+    "ok": false,
+    "err": "TokenError.BelowMinimum",
+    "block": 336166,
+    "hash": "0x9f5bfae06d3053777d2f13328c556813e1c343990e97682813b34b0dbc9cfa86",
+    "tx": "0x1e88d05351ee334e9289ed4644d9447577b235f1fd2e34968e81b1fb2698e10a",
+    "events": [
+      "balances.Withdraw",
+      "balances.Deposit",
+      "transactionPayment.TransactionFeePaid",
+      "system.ExtrinsicFailed"
+    ]
+  },
+  "step7": {
+    "ok": true,
+    "block": 336167,
+    "hash": "0xaaace1851465366dd6e24ffd39b70b811a6dd81bd383d198b652b81175413908",
+    "tx": "0x7cb69e7b9fe8cb49f5f87d64f11b569606ec0354274375abcc434676eae67604",
+    "events": [
+      "balances.Withdraw",
+      "system.NewAccount",
+      "balances.Endowed",
+      "balances.Transfer",
+      "utility.ItemCompleted",
+      "assets.Transferred",
+      "utility.ItemCompleted",
+      "utility.BatchCompleted",
+      "balances.Deposit",
+      "transactionPayment.TransactionFeePaid",
+      "system.ExtrinsicSuccess"
+    ]
+  },
+  "step7recipient": "5H5tvLuJ9axucEBC6AGZFgwXHXfvTB5FhVk4gfHLm4b2N3Qe"
+}

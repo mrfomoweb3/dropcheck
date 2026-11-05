@@ -21,15 +21,15 @@ Status: **verified** = we ran it on V3 · **from docs** = cited source · **assu
 | node-console is a polkadot.js Apps fork; link blocks via `#/explorer/query/<n>` | page HTML | 2026-10-26 | from page (link format **assumption** until clicked) |
 | Old `*.feso-apps.xyz` endpoints are stale | build spec | — | from docs (not re-tested) |
 | No public faucet; tPOT is distributed to registered participants / via Discord ticket | portaldot-v3-testnet-guide README | 2026-10-26 | from docs |
-| Asset transfer to an account with no native balance fails with **`TokenError.CannotCreate`** | spike step 6a, `docs/spike-fork.log` | 2026-11-05 | verified on **V3 fork** (live: pending) |
-| Transfer below `min_balance` to a new holder fails with `TokenError.BelowMinimum` | spike step 6b | 2026-11-05 | verified on **V3 fork** |
-| Native transfer below ED to a new account fails with `TokenError.BelowMinimum` | spike step 6c | 2026-11-05 | verified on **V3 fork** |
-| `batch_all(top-up, asset transfer)` makes a fresh account hold the asset | spike step 7 | 2026-11-05 | verified on **V3 fork**; **live V3 pending funding** |
+| Asset transfer to an account with no native balance fails with **`TokenError.CannotCreate`** | spike step 6a, `docs/spike-live.log` (block #336163) | 2026-11-05 | verified on **live V3** (and fork) |
+| Transfer below `min_balance` to a new holder fails with `TokenError.BelowMinimum` | spike step 6b (block #336165) | 2026-11-05 | verified on **live V3** (and fork) |
+| Native transfer below ED to a new account fails with `TokenError.BelowMinimum` | spike step 6c (block #336166) | 2026-11-05 | verified on **live V3** (and fork) |
+| `batch_all(top-up, asset transfer)` makes a fresh account hold the asset | spike step 7 (block #336167) | 2026-11-05 | verified on **live V3** (and fork) |
 | No ERC-20 assets precompile found on the EVM side (asset 7777, two standard address formats return `0x`) | `eth_call` on live EVM RPC | 2026-11-05 | verified (live V3) |
-| 50-recipient batch (100 calls) is included in one block: 1.8% of block refTime, fee 0.436 tPOT | spike step 9 | 2026-11-05 | verified on **V3 fork** |
-| Live test A5–A7: demo list → 1 signature → 17 asset transfers, 5 top-ups, 2 excluded, 1 merged; fresh accounts hold the asset; sender ≥ ED | `pnpm test:live` on fork | 2026-11-05 | verified on **V3 fork** (live: pending) |
-| Browser UI end to end: load list → connect wallet → Fix & Send → 1 signature → 17 rows "Sent" with block + before→after | `scripts/ui-e2e-fork.mjs` (injected test wallet, `//Alice`) | 2026-11-05 | verified on **V3 fork** (no real extension) |
-| Cancelling the signature leaves nothing sent and shows a clear message | `E2E_CANCEL=1 scripts/ui-e2e-fork.mjs` | 2026-11-05 | verified on **V3 fork** |
+| 50-recipient batch (100 calls) is included in one block: 1.8% of block refTime, fee 0.436 tPOT | spike step 9 | 2026-11-05 | fee/weight verified on **live V3** (`payment_queryInfo`); inclusion of the full 100-call batch verified on **V3 fork** only |
+| Live test A5–A7: demo list → 1 signature → 17 asset transfers, 5 top-ups, 2 excluded, 1 merged; fresh accounts hold the asset; sender ≥ ED | `pnpm test:live` | 2026-11-05 | verified on **live V3**: tx `0x0e28e80e…30b4`, block #336184 (see PROOF.md); earlier on fork |
+| Browser UI end to end: load list → connect wallet → Fix & Send → 1 signature → 17 rows "Sent" with block + before→after | `scripts/ui-e2e.mjs` (injected test wallet; production build) | 2026-11-05 | verified on **live V3**: tx `0x2866dff2…f77a`, block #336227, 14.8 s, 0 page errors. Signer injected by the test, **not a real browser extension** |
+| Cancelling the signature leaves nothing sent and shows a clear message | `E2E_CANCEL=1 scripts/ui-e2e.mjs` | 2026-11-05 | verified on **V3 fork** |
 | A failing batch is caught by `system_dryRun` on the signed bytes; nothing is broadcast (nonce unchanged) | `spike/failure-paths.ts` | 2026-11-05 | verified on **live V3** (unfunded key: payment invalid) and on fork (`TokenError.CannotCreate`) |
 | Baseline: node-console manual distribution of 20 rows | §11 | — | **not measured yet** |
 
@@ -45,6 +45,21 @@ Status: **verified** = we ran it on V3 · **from docs** = cited source · **assu
 - `DECIMAL_SUSPECT` uses ≥1000× the median (spec example was ≥10^decimals × median, which is too loose to catch real mistakes) or <1 unit when every other row is whole.
 - Dry-run: `system_dryRun` needs a *signed* extrinsic. Dropcheck signs once, dry-runs those exact bytes, and broadcasts the same bytes only if the dry-run passes. That's still one signature.
 - UI is light-only by design (painted landscape theme per design reference); `dark:` styles remain for a future toggle. Spec §7 asked for light/dark.
+
+## Independent on-chain check of the live sends (2026-11-05)
+Read back from chain, not from the app: both blocks #336184 and #336227 contain one `utility.batchAll` (22 calls) from the
+demo sender with 17 `assets.Transferred`, 5 `balances.Transfer`, 5 `system.NewAccount`, `ExtrinsicSuccess`, and **no**
+`KilledAccount`. The 5 fresh wallets of the UI run each hold exactly their DROP amount (50/60/70/80/90) plus 0.11 tPOT.
+
+## Bugs found by the live run (fixed 2026-11-05)
+- EVM addresses were never resolved through `ReviveApi.account_id` in the app: the shipped metadata snapshot is v14 (no
+  runtime-API section), so `api.call.reviveApi` was undefined and every H160 silently used the `h160 ++ 0xEE×12` fallback.
+  Correct for unmapped accounts, wrong for accounts that called `map_account`. Now a raw `state_call('ReviveApi_account_id')`.
+  Caught by live test A2.
+- `seed-demo` reused asset 7777 (pUSD) from the shipped preview `demo.json`, which the demo key doesn't own. Now it only
+  reuses an asset the sender owns.
+- Node scripts downloaded the full 1 MB metadata on every connect and timed out on the live node; they now reuse the
+  snapshot like the browser (`scripts/node-connect.ts`).
 
 ## Bugs found by the fork rehearsal (fixed 2026-11-05)
 - Browser ignored `NEXT_PUBLIC_DROPCHECK_*` overrides (dynamic `process.env[key]`; Next.js only inlines literal references).

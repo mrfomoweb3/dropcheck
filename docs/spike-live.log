@@ -1,0 +1,21 @@
+sender 5Cg3VnuJTQQKwC9bcTVRXM1ygaMj7vRzPQ39jdp71NVd163A free 50000000000000000
+[step5 create+metadata+mint] block #336162 0xb5e99bfc5c080426752c521395330534557edadf10c851e948918371125bad77 tx 0xdf46bf1defd66242d97879c4244407c80bf199db4a7438ae3df24a99d8edc9c8 OK
+[step5 create+metadata+mint] events: balances.Withdraw, balances.Reserved, assets.Created, utility.ItemCompleted, balances.Reserved, assets.MetadataSet, utility.ItemCompleted, assets.Issued, utility.ItemCompleted, utility.BatchCompleted, balances.Deposit, transactionPayment.TransactionFeePaid, system.ExtrinsicSuccess
+asset 39590 {"owner":"5Cg3VnuJTQQKwC9bcTVRXM1ygaMj7vRzPQ39jdp71NVd163A","issuer":"5Cg3VnuJTQQKwC9bcTVRXM1ygaMj7vRzPQ39jdp71NVd163A","admin":"5Cg3VnuJTQQKwC9bcTVRXM1ygaMj7vRzPQ39jdp71NVd163A","freezer":"5Cg3VnuJTQQKwC9bcTVRXM1ygaMj7vRzPQ39jdp71NVd163A","supply":"1,000,000,000,000","deposit":"100,000,000,000,000","minBalance":"5,000,000","isSufficient":false,"accounts":"1","sufficients":"0","approvals":"0","status":"Live"}
+[step6a asset->fresh no native] block #336163 0x68bff521f9393914b0da46ad9153bd89e5f1a941b77822b33c603efb7c6acf32 tx 0x5572f098e1d420c9eda468f3dbc07c804f0711dbd9e37d4b66a2645418afd6b0 FAILED TokenError.CannotCreate
+[step6a asset->fresh no native] events: balances.Withdraw, balances.Deposit, transactionPayment.TransactionFeePaid, system.ExtrinsicFailed
+[step6b prep: fund recipient] block #336164 0x4a4ce57aa7defdce26d5c35af60ecf995f7cdda3b0ab94455255a050353b3ba3 tx 0x7d9fe21dd09da68b89b5e0415cbfa9567e15b6f1e45ea1b02dc32fb77b9dc858 OK
+[step6b prep: fund recipient] events: balances.Withdraw, system.NewAccount, balances.Endowed, balances.Transfer, utility.ItemCompleted, utility.BatchCompleted, balances.Deposit, transactionPayment.TransactionFeePaid, system.ExtrinsicSuccess
+[step6b asset below min_balance] block #336165 0x64c98b5fd018e0c4e32cafae35857eed8b5ceae9a00c2963fadc94ab06b85bee tx 0x9318ac8110cf8c31de0a1acb763c2e0f3868e9e50da6f6511e5d699a93c0f22a FAILED TokenError.BelowMinimum
+[step6b asset below min_balance] events: balances.Withdraw, balances.Deposit, transactionPayment.TransactionFeePaid, system.ExtrinsicFailed
+[step6c native below ED] block #336166 0x9f5bfae06d3053777d2f13328c556813e1c343990e97682813b34b0dbc9cfa86 tx 0x1e88d05351ee334e9289ed4644d9447577b235f1fd2e34968e81b1fb2698e10a FAILED TokenError.BelowMinimum
+[step6c native below ED] events: balances.Withdraw, balances.Deposit, transactionPayment.TransactionFeePaid, system.ExtrinsicFailed
+[step7 top-up + asset] block #336167 0xaaace1851465366dd6e24ffd39b70b811a6dd81bd383d198b652b81175413908 tx 0x7cb69e7b9fe8cb49f5f87d64f11b569606ec0354274375abcc434676eae67604 OK
+[step7 top-up + asset] events: balances.Withdraw, system.NewAccount, balances.Endowed, balances.Transfer, utility.ItemCompleted, assets.Transferred, utility.ItemCompleted, utility.BatchCompleted, balances.Deposit, transactionPayment.TransactionFeePaid, system.ExtrinsicSuccess
+step7 recipient 5H5tvLuJ9axucEBC6AGZFgwXHXfvTB5FhVk4gfHLm4b2N3Qe asset account {"balance":"10,000,000","status":"Liquid","reason":"Consumer","extra":null}
+step8 eth_call totalSupply 0xffffffff00000000000000000000000000009aa6 {"jsonrpc":"2.0","id":1,"result":"0x"}
+step8 eth_getCode 0xffffffff00000000000000000000000000009aa6 {"jsonrpc":"2.0","id":1,"result":"0x"}
+step8 eth_call totalSupply 0x0000000000000000000000000000000000009aa6 {"jsonrpc":"2.0","id":1,"result":"0x"}
+step8 eth_getCode 0x0000000000000000000000000000000000009aa6 {"jsonrpc":"2.0","id":1,"result":"0x"}
+step9 50 recipients (100 calls): weight {"refTime":"36,502,595,300","proofSize":"506,231"} fee 43625861469389 len 4257
+sender free after 49749666599371507 (ED 10000000000000) units 497.496
