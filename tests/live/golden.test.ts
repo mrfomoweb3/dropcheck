@@ -8,6 +8,7 @@ import { resolveEvm } from '@/core/chain';
 import { connectNode } from '../../scripts/node-connect';
 import { CHAIN } from '@/config/chain';
 import { encodeAddress } from '@polkadot/util-crypto';
+import { freshenDemoCsv } from '@/core/demo';
 
 // DEMO_JSON / PROOF_FILE let fork rehearsals use their own files (never the real PROOF.md).
 const DEMO_JSON = process.env.DEMO_JSON ?? 'public/demo.json';
@@ -24,7 +25,8 @@ describe.skipIf(!ready)('live golden path on V3', () => {
 
   it('A5–A7: demo list -> 1 signature -> 17 sent, 2 excluded, dup merged, fresh accounts hold asset, sender alive', async () => {
     const demo = JSON.parse(readFileSync(DEMO_JSON, 'utf8'));
-    const out = await runHeadless({ assetId: demo.assetId, csv: demo.csv, send: true, log: () => undefined });
+    // Same as the app: fresh rows become brand-new accounts each run, so the test can be repeated.
+    const out = await runHeadless({ assetId: demo.assetId, csv: freshenDemoCsv(demo.csv, demo.fresh ?? [], 42), send: true, log: () => undefined });
     const { res, plan, results, after, senderHex, ed } = out as any;
     expect(plan.chunks).toHaveLength(1);
     expect(results).toHaveLength(1);

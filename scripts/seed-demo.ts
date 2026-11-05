@@ -100,6 +100,8 @@ async function main() {
   writeFileSync(DEMO_CSV, csv);
   writeFileSync(DEMO_JSON, JSON.stringify({
     assetId, csv, runId,
+    // The app swaps these for brand-new random accounts on every load, so the top-up case never goes stale.
+    fresh,
     note: `Demo asset ${assetId} (DROP). Fresh rows generated ${new Date().toISOString()}.`,
     sender: me.address,
   }, null, 2) + '\n');

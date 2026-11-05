@@ -1,0 +1,75 @@
+network portaldot-v3/3002 genesis 0xd4f9acbcf7… identity OK
+asset 895266 Dropcheck Demo (DROP) decimals 6 min 5000000 sufficient false Live
+summary: 55 recipients · 0 ok · 55 auto-fixable · 0 blocked · 1,760 DROP · top-ups 55 = 6.05 tPOT · fee 0.48977681162811
+plan: 2 chunk(s), 100/10 calls
+chunk 1: Dry-running signed batch…
+chunk 1: Broadcasting…
+chunk 1: Waiting for block…
+chunk 1: Waiting for block…
+chunk 1: OK tx 0xbc8700b5ebd60cecb99d56b64b3a1c5a66256791c4f430e7a8b33001c9e4fed3 block #337909 0xef6e52a43f463ef4a8664cca20ea4371d7a16787bec127625d810562a0933431 dryRun {"available":true,"ok":true}
+chunk 1: events balances.Withdraw, system.NewAccount, balances.Endowed, balances.Transfer, utility.ItemCompleted, assets.Transferred, utility.BatchCompleted, balances.Deposit, transactionPayment.TransactionFeePaid, system.ExtrinsicSuccess; asset transfers 50, native 50
+chunk 2: Dry-running signed batch…
+chunk 2: Broadcasting…
+chunk 2: Waiting for block…
+chunk 2: Waiting for block…
+chunk 2: OK tx 0x1c1b850547aae9e449de139f25d40ea286acfc55b5eca9fa6f4966dd9619d8f0 block #337912 0xebb6d02510765813eb7ee5facfffb5c36fc0dddacf463bfdf646acc176cbea45 dryRun {"available":true,"ok":true}
+chunk 2: events balances.Withdraw, system.NewAccount, balances.Endowed, balances.Transfer, utility.ItemCompleted, assets.Transferred, utility.BatchCompleted, balances.Deposit, transactionPayment.TransactionFeePaid, system.ExtrinsicSuccess; asset transfers 5, native 5
+after L2 5Cns1wENTY 0 -> 5 DROP
+after L3 5H6ATm94M1 0 -> 6 DROP
+after L4 5GhdwiHgPZ 0 -> 7 DROP
+after L5 5GSp5VW4f5 0 -> 8 DROP
+after L6 5EZ5WEBBVT 0 -> 9 DROP
+after L7 5CfAvU9WWC 0 -> 10 DROP
+after L8 5CTqHWSWFo 0 -> 11 DROP
+after L9 5G2Z4VxrJ7 0 -> 12 DROP
+after L10 5DDUjzFh6p 0 -> 13 DROP
+after L11 5GoLbQMiJZ 0 -> 14 DROP
+after L12 5HNMDQDiUN 0 -> 15 DROP
+after L13 5DucpkiWAg 0 -> 16 DROP
+after L14 5EzDzFCezp 0 -> 17 DROP
+after L15 5F8S283NJF 0 -> 18 DROP
+after L16 5CApfiWB3h 0 -> 19 DROP
+after L17 5EJkiwW5Ew 0 -> 20 DROP
+after L18 5H1hgfpvFF 0 -> 21 DROP
+after L19 5D1jMMjAbj 0 -> 22 DROP
+after L20 5Ev97qNdr1 0 -> 23 DROP
+after L21 5FFadQJvZX 0 -> 24 DROP
+after L22 5CLRFAYyKm 0 -> 25 DROP
+after L23 5F5RHbhiHg 0 -> 26 DROP
+after L24 5FvmYAAjSH 0 -> 27 DROP
+after L25 5DgP2MnFoX 0 -> 28 DROP
+after L26 5CWwHUzMzs 0 -> 29 DROP
+after L27 5Dms6xiQy4 0 -> 30 DROP
+after L28 5HAxa1MRje 0 -> 31 DROP
+after L29 5CEKAfPSfY 0 -> 32 DROP
+after L30 5EuceFiKA2 0 -> 33 DROP
+after L31 5EKz67oNtv 0 -> 34 DROP
+after L32 5DjPSUPh3z 0 -> 35 DROP
+after L33 5GKaczfxKq 0 -> 36 DROP
+after L34 5CuXf55USm 0 -> 37 DROP
+after L35 5F8JL3Xp3d 0 -> 38 DROP
+after L36 5FQxFfvwwv 0 -> 39 DROP
+after L37 5EF8JkUrf9 0 -> 40 DROP
+after L38 5FjDJ6cD93 0 -> 41 DROP
+after L39 5DjWi2tHSA 0 -> 42 DROP
+after L40 5FozB9TT9H 0 -> 43 DROP
+after L41 5H2E5C83TE 0 -> 44 DROP
+after L42 5CbpJRPkiH 0 -> 45 DROP
+after L43 5Codyivh1L 0 -> 46 DROP
+after L44 5Evy1VjZBs 0 -> 47 DROP
+after L45 5F9xLP8zo8 0 -> 48 DROP
+after L46 5HkqnUeLyC 0 -> 49 DROP
+after L47 5DRisZs5e3 0 -> 50 DROP
+after L48 5HfdfEsifx 0 -> 51 DROP
+after L49 5Da77UPGFT 0 -> 52 DROP
+after L50 5D8v7ofGka 0 -> 53 DROP
+after L51 5DW9kqehzu 0 -> 54 DROP
+after L52 5F7oJQtqha 0 -> 55 DROP
+after L53 5EuMgmg86V 0 -> 56 DROP
+after L54 5H7pnpA5DN 0 -> 57 DROP
+after L55 5FLHuDQnKp 0 -> 58 DROP
+after L56 5GH3dsbgk4 0 -> 59 DROP
+sender native after 484.77717312180191 tPOT (ED 0.1)
+RESULT chunks=2 sizes=100/10 signatures=2 ok=true recipients=55 holdingExactAmount=55
+TX 0xbc8700b5ebd60cecb99d56b64b3a1c5a66256791c4f430e7a8b33001c9e4fed3 block #337909
+TX 0x1c1b850547aae9e449de139f25d40ea286acfc55b5eca9fa6f4966dd9619d8f0 block #337912

@@ -33,30 +33,94 @@ export function checkIdentity(
   return { ok: problems.length === 0, problems };
 }
 
+export interface ConnectProbe {
+  /** `${genesis}-${specVersion}` of the node we reached. */
+  key: string;
+  specVersion: number;
+  /** true when shipped/cached metadata matches, so no ~1 MB download is needed. */
+  metadataKnown: boolean;
+}
+
 /**
  * Connect and wait until the API is ready. `metadata` is a known `${genesis}-${specVersion}` -> hex map;
  * polkadot.js uses it only on an exact match, which skips the ~1 MB metadata download.
+ * Before starting the API, two tiny RPC calls on the same socket tell whether the runtime was upgraded
+ * (no matching metadata). Then `onProbe` fires and the slower `slowTimeoutMs` applies, so the UI can say
+ * "downloading new chain data" instead of looking dead.
  */
 export async function connect(
   wss: string,
   timeoutMs = 90_000,
   metadata?: Record<string, `0x${string}`>,
+  opts: { slowTimeoutMs?: number; onProbe?: (p: ConnectProbe) => void } = {},
 ): Promise<ApiPromise> {
-  const provider = new WsProvider(wss, 2_500);
-  const api = new ApiPromise({ provider, noInitWarn: true, throwOnConnect: true, metadata });
+  // Long per-request timeout: the metadata download below can take 20+ s on the public V3 node.
+  const provider = new WsProvider(wss, 2_500, {}, Math.max(opts.slowTimeoutMs ?? 0, 120_000));
+  let api: ApiPromise | undefined;
+  let known = metadata;
   let timer: ReturnType<typeof setTimeout> | undefined;
+  let budget = timeoutMs;
+  const deadline = (ms: number) => new Promise<never>((_, rej) => { timer = setTimeout(() => rej(new Error(`Node unreachable: ${wss}`)), ms); });
   try {
-    await Promise.race([
-      api.isReadyOrError,
-      new Promise((_, rej) => { timer = setTimeout(() => rej(new Error(`Node unreachable: ${wss}`)), timeoutMs); }),
-    ]);
+    const t0 = Date.now();
+    await Promise.race([provider.isReady, deadline(timeoutMs)]);
+    clearTimeout(timer);
+    try {
+      const [genesis, rv] = await Promise.race([
+        Promise.all([provider.send('chain_getBlockHash', [0]), provider.send('state_getRuntimeVersion', [])]),
+        deadline(20_000),
+      ]);
+      clearTimeout(timer);
+      const key = `${genesis}-${rv.specVersion}`;
+      const metadataKnown = !!metadata?.[key];
+      if (!metadataKnown && opts.slowTimeoutMs) budget = opts.slowTimeoutMs;
+      opts.onProbe?.({ key, specVersion: Number(rv.specVersion), metadataKnown });
+      if (!metadataKnown) {
+        // Download it ourselves with plain state_getMetadata. polkadot.js would first try
+        // state_call Metadata_metadata_at_version, which makes the V3 node drop the socket (verified 2026-11-05).
+        known = { ...metadata, [key]: await downloadMetadata(wss, t0 + budget) };
+      }
+    } catch (e) {
+      clearTimeout(timer);
+      // Probe is best-effort, but a failed download after an upgrade is a real connection failure.
+      if ((e as Error).message.startsWith('Node unreachable')) throw e;
+    }
+    api = new ApiPromise({ provider, noInitWarn: true, throwOnConnect: true, metadata: known });
+    await Promise.race([api.isReadyOrError, deadline(Math.max(budget - (Date.now() - t0), 15_000))]);
   } catch (e) {
-    await api.disconnect().catch(() => undefined);
+    if (api) await api.disconnect().catch(() => undefined);
+    else await provider.disconnect().catch(() => undefined);
     throw e;
   } finally {
     clearTimeout(timer);
   }
   return api;
+}
+
+/**
+ * state_getMetadata with retries: the public node sometimes stalls or drops the socket mid-download (1006),
+ * and a request on a stalled socket never settles. So each attempt uses its own fresh connection and gets
+ * 45 s (a normal download takes ~20 s). Gives up at `deadlineAt`.
+ */
+async function downloadMetadata(wss: string, deadlineAt: number): Promise<`0x${string}`> {
+  let last: unknown;
+  for (let attempt = 1; attempt <= 6 && Date.now() < deadlineAt; attempt++) {
+    const ms = Math.min(45_000, deadlineAt - Date.now());
+    const p = new WsProvider(wss, false, {}, ms + 5_000);
+    let t: ReturnType<typeof setTimeout> | undefined;
+    try {
+      const timeout = new Promise<never>((_, rej) => { t = setTimeout(() => rej(new Error('metadata download timed out')), ms); });
+      await Promise.race([p.connect(), timeout]);
+      await Promise.race([p.isReady, timeout]);
+      return await Promise.race([p.send('state_getMetadata', []) as Promise<`0x${string}`>, timeout]);
+    } catch (e) {
+      last = e;
+    } finally {
+      clearTimeout(t);
+      p.disconnect().catch(() => undefined);
+    }
+  }
+  throw new Error(`Node unreachable: chain metadata download failed (${(last as Error)?.message ?? 'timeout'})`);
 }
 
 export async function readIdentity(api: ApiPromise): Promise<ChainIdentity> {

@@ -6,6 +6,7 @@ import { ResultsTable } from '../components/ResultsTable';
 import { SummaryBar, RunPanel } from '../components/SendFlow';
 import Link from 'next/link';
 import { Banner } from '../components/ui';
+import { DemoTokenOffer } from '../components/DemoToken';
 
 export default function Page() {
   const dc = useDropcheck();
@@ -15,6 +16,7 @@ export default function Page() {
     <div className="min-h-screen bg-gradient-to-b from-[#1d3a5c]/35 via-white/30 to-white/60 dark:from-zinc-950/70 dark:via-zinc-950/80 dark:to-zinc-950/90">
     <main className="mx-auto flex min-h-screen max-w-7xl flex-col gap-4 px-4 pt-4 sm:px-6">
       <Header dc={dc} />
+      {conn.status === 'connecting' && conn.note && <Banner tone="info">{conn.note}</Banner>}
       {conn.status === 'error' && (
         <Banner tone="red">
           Can&apos;t reach the Portaldot V3 node ({conn.error}). <button className="underline" onClick={retry}>Retry</button>
@@ -28,6 +30,7 @@ export default function Page() {
         <Banner tone="info">Preview mode: rows are checked against live chain state. Connect a wallet to check your own balance and send.</Banner>
       )}
       <RunPanel dc={dc} />
+      <DemoTokenOffer dc={dc} />
       <div className="grid flex-1 gap-4 lg:grid-cols-[22rem_1fr]">
         <div className="order-2 lg:order-1"><InputPanel dc={dc} /></div>
         <div className="order-1 min-w-0 lg:order-2"><ResultsTable dc={dc} /></div>

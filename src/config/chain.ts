@@ -23,3 +23,19 @@ export function blockLink(block: number | string): string {
   const rpc = encodeURIComponent(CHAIN.wss);
   return `${CHAIN.explorer}/?rpc=${rpc}#/explorer/query/${block}`;
 }
+
+/**
+ * Endpoint for this page load: `?rpc=wss://...` overrides the default node (useful if the public node is down).
+ * Safe: the genesis + spec check still runs, so any other chain is refused for sending.
+ * Only wss:// (or ws:// on localhost, for fork rehearsals) is accepted.
+ */
+export function endpointFromSearch(search: string, fallback: string = CHAIN.wss): string {
+  const rpc = new URLSearchParams(search).get('rpc')?.trim();
+  if (!rpc) return fallback;
+  try {
+    const u = new URL(rpc);
+    if (u.protocol === 'wss:') return rpc;
+    if (u.protocol === 'ws:' && ['localhost', '127.0.0.1'].includes(u.hostname)) return rpc;
+  } catch { /* not a URL */ }
+  return fallback;
+}

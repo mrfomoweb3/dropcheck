@@ -51,7 +51,23 @@ Read back from chain, not from the app: both blocks #336184 and #336227 contain 
 demo sender with 17 `assets.Transferred`, 5 `balances.Transfer`, 5 `system.NewAccount`, `ExtrinsicSuccess`, and **no**
 `KilledAccount`. The 5 fresh wallets of the UI run each hold exactly their DROP amount (50/60/70/80/90) plus 0.11 tPOT.
 
+## Robustness work after the first live run (2026-11-05)
+| Claim | Source | Status |
+|---|---|---|
+| >50 recipients: 55 fresh wallets → 2 batches (100 + 10 calls), 2 signatures, all 55 hold their exact amount | `spike/multichunk.ts`, `docs/multichunk-live.log`, blocks #337909/#337912 | verified on **live V3** |
+| A wallet with 3 tPOT and no demo token completes the demo in the production UI: create own token (1 sig) + Fix & Send (1 sig), 17 sent, 0 failed | `scripts/ui-e2e-visitor.mjs`, blocks #338420/#338422 | verified on **live V3** (injected signer) |
+| Visitor token cost: deposit = assetDeposit 1 + metadataDepositBase 0.1 + 0.06 × 18 bytes = **2.18 tPOT reserved**; matched the visitor's on-chain `reserved` exactly | runtime constants + `system.account` | verified on **live V3** |
+| `Metadata_metadata_at_version` via `state_call` makes the public node drop the socket (1006); plain `state_getMetadata` returns ~1.1 MB in ~20 s | raw RPC timing from Node | verified on **live V3** (one machine, one day; node behaviour may change) |
+| Runtime-upgrade path: with a non-matching snapshot and empty cache, the app shows an "updated chain" note and connects | `scripts/ui-upgrade-sim.mjs`, 5/5 runs, 25–40 s | verified against **live V3** (simulated upgrade) |
+| Lost confirmation recovery: `findIncluded` finds a known tx and decodes success and `TokenError.CannotCreate` failures from block events | ad-hoc script against #336227 / #336163 | verified on **live V3**. The watchdog itself (dropped socket mid-send) was **not** reproduced on demand |
+| `pnpm test:live` is repeatable (fresh rows regenerated per run) | second run, block #338429 | verified on **live V3** |
+
 ## Bugs found by the live run (fixed 2026-11-05)
+- The first visitor UI run never confirmed its send (the node dropped sockets during the run; the status subscription
+  went quiet and nothing timed out). `signAndSend` now has a 60 s watchdog that scans new blocks for the tx hash.
+- After a runtime upgrade the app would have failed to connect at all (see the state_call row above). Fixed.
+- The visitor cost check used a fixed 0.15 tPOT send-fee buffer and blocked a 3 tPOT wallet that actually succeeds;
+  it now uses the app's live fee estimate.
 - EVM addresses were never resolved through `ReviveApi.account_id` in the app: the shipped metadata snapshot is v14 (no
   runtime-API section), so `api.call.reviveApi` was undefined and every H160 silently used the `h160 ++ 0xEE×12` fallback.
   Correct for unmapped accounts, wrong for accounts that called `map_account`. Now a raw `state_call('ReviveApi_account_id')`.

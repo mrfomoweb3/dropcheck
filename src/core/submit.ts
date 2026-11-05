@@ -105,52 +105,105 @@ export async function signAndSend(
   }
 
   onStatus?.('Broadcasting…');
+  const startBlock = (await api.rpc.chain.getHeader()).number.toNumber();
   return new Promise<SubmitResult>((resolve, reject) => {
     let unsub: (() => void) | undefined;
+    let settled = false;
+    const finish = (r: SubmitResult | Error) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(watchdog);
+      unsub?.();
+      if (r instanceof Error) reject(r); else resolve(r);
+    };
+    // If the node's socket drops, the status subscription goes quiet forever. After a while, look for the
+    // tx in the chain itself, so a lost confirmation is never shown as "nothing happened" (and resent).
+    const watchdog = setTimeout(async () => {
+      onStatus?.('No confirmation yet, checking the chain directly…');
+      try {
+        const found = await findIncluded(api, txHash, startBlock, INCLUSION_SCAN_MS);
+        if (found) finish({ ...found, dryRun });
+        else finish(new Error(`No confirmation from the node within ${Math.round((CONFIRM_TIMEOUT_MS + INCLUSION_SCAN_MS) / 1000)} s and the batch is not in any block since #${startBlock}. It was probably not sent. Reload the page to re-check balances before trying again.`));
+      } catch (e) {
+        finish(new Error(`Lost contact with the node (${(e as Error).message}). Your batch may still have been included: reload the page and check balances before sending again.`));
+      }
+    }, CONFIRM_TIMEOUT_MS);
     batch
       .send(async (res) => {
-        const { status, events, dispatchError } = res;
+        const { status } = res;
         if (status.isReady || status.isBroadcast) onStatus?.('Waiting for block…');
         if (status.isInvalid || status.isDropped || status.isUsurped) {
-          unsub?.();
-          reject(new Error(`Transaction ${status.type}`));
+          finish(new Error(`Transaction ${status.type}`));
           return;
         }
         if (!status.isInBlock) return;
-        unsub?.();
         const blockHash = status.asInBlock.toHex();
         const header = await api.rpc.chain.getHeader(blockHash);
-        const transfers: TransferEvent[] = [];
-        let batchCompleted = false;
-        const names: string[] = [];
-        let extrinsicIndex = -1;
-        for (const { event, phase } of events) {
-          if (phase.isApplyExtrinsic) extrinsicIndex = phase.asApplyExtrinsic.toNumber();
-          names.push(`${event.section}.${event.method}`);
-          if (event.section === 'assets' && event.method === 'Transferred') {
-            const [, , to, amount] = event.data as any;
-            transfers.push({ kind: 'asset', to: toHexAccount(to), amount: BigInt(amount.toString()) });
-          } else if (event.section === 'balances' && event.method === 'Transfer') {
-            const [, to, amount] = event.data as any;
-            transfers.push({ kind: 'native', to: toHexAccount(to), amount: BigInt(amount.toString()) });
-          } else if (event.section === 'utility' && event.method === 'BatchCompleted') {
-            batchCompleted = true;
-          }
-        }
-        resolve({
-          ok: !dispatchError && batchCompleted,
-          txHash,
-          blockHash,
-          blockNumber: header.number.toNumber(),
-          extrinsicIndex,
-          transfers,
-          batchCompleted,
-          error: dispatchError ? decodeDispatchError(api, dispatchError) : undefined,
-          dryRun,
-          events: names,
-        });
+        finish({ ...parseOutcome(api, res.events as any, res.dispatchError, txHash, blockHash, header.number.toNumber()), dryRun });
       })
-      .then((u) => { unsub = u; })
-      .catch(reject);
+      .then((u) => { unsub = u; if (settled) u(); })
+      .catch((e) => finish(e as Error));
   });
+}
+
+const CONFIRM_TIMEOUT_MS = 60_000;
+const INCLUSION_SCAN_MS = 60_000;
+
+type Outcome = Omit<SubmitResult, 'dryRun'>;
+
+function parseOutcome(api: ApiPromise, events: { event: any; phase: any }[], dispatchError: any, txHash: string, blockHash: string, blockNumber: number): Outcome {
+  const transfers: TransferEvent[] = [];
+  let batchCompleted = false;
+  const names: string[] = [];
+  let extrinsicIndex = -1;
+  for (const { event, phase } of events) {
+    if (phase.isApplyExtrinsic) extrinsicIndex = phase.asApplyExtrinsic.toNumber();
+    names.push(`${event.section}.${event.method}`);
+    if (event.section === 'assets' && event.method === 'Transferred') {
+      const [, , to, amount] = event.data as any;
+      transfers.push({ kind: 'asset', to: toHexAccount(to), amount: BigInt(amount.toString()) });
+    } else if (event.section === 'balances' && event.method === 'Transfer') {
+      const [, to, amount] = event.data as any;
+      transfers.push({ kind: 'native', to: toHexAccount(to), amount: BigInt(amount.toString()) });
+    } else if (event.section === 'utility' && event.method === 'BatchCompleted') {
+      batchCompleted = true;
+    }
+  }
+  return {
+    ok: !dispatchError && batchCompleted,
+    txHash, blockHash, blockNumber, extrinsicIndex, transfers, batchCompleted,
+    error: dispatchError ? decodeDispatchError(api, dispatchError) : undefined,
+    events: names,
+  };
+}
+
+/**
+ * Scan blocks from `fromBlock` for an extrinsic with this hash, polling until `waitMs` elapses.
+ * Returns its outcome (from that block's events) or null if it never appeared.
+ */
+export async function findIncluded(api: ApiPromise, txHash: string, fromBlock: number, waitMs: number): Promise<Outcome | null> {
+  const until = Date.now() + waitMs;
+  let next = fromBlock;
+  for (;;) {
+    const head = (await api.rpc.chain.getHeader()).number.toNumber();
+    // Fetch blocks in parallel (this node takes ~3 s per block request when read one at a time).
+    while (next <= head) {
+      const nums = Array.from({ length: Math.min(10, head - next + 1) }, (_, i) => next + i);
+      const blocks = await Promise.all(nums.map(async (n) => {
+        const hash = await api.rpc.chain.getBlockHash(n);
+        return { n, hash, block: await api.rpc.chain.getBlock(hash) };
+      }));
+      for (const { n, hash, block } of blocks) {
+        const idx = block.block.extrinsics.findIndex((x) => x.hash.toHex() === txHash);
+        if (idx < 0) continue;
+        const all: any = await (await api.at(hash)).query.system.events();
+        const mine = all.filter((e: any) => e.phase.isApplyExtrinsic && e.phase.asApplyExtrinsic.toNumber() === idx);
+        const failed = mine.find((e: any) => e.event.section === 'system' && e.event.method === 'ExtrinsicFailed');
+        return parseOutcome(api, mine, failed ? failed.event.data[0] : undefined, txHash, hash.toHex(), n);
+      }
+      next += nums.length;
+    }
+    if (Date.now() > until) return null;
+    await new Promise((r) => setTimeout(r, 3_000));
+  }
 }
