@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "b4bc7767-ef47-4cd2-a337-0a50db591b6c",
-  "currentRevision": "2f5f5b32-99f5-43a4-b70e-863b5b915f2c",
+  "currentRevision": "916bbb01-81f7-4446-9da0-95019a21abe0",
   "pendingChanges": false,
   "files": {
     "AGENTS.md": {
@@ -13,8 +13,8 @@
       "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/1b/1b36171117cb7c18f4100a0db6a3782ff2e096115995733200445cc2e80a4060"
     },
     "SOURCES.md": {
-      "hash": "05489e737e905bb59f53b3979736dbc0fb01a05dd39d9474608f3df256f796b3",
-      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/05/05489e737e905bb59f53b3979736dbc0fb01a05dd39d9474608f3df256f796b3"
+      "hash": "1dc53bafc6e17545695dd4e9e5776cc6e4f70bd4380357a92077968702f5dac2",
+      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/1d/1dc53bafc6e17545695dd4e9e5776cc6e4f70bd4380357a92077968702f5dac2"
     },
     "SPEC.md": {
       "hash": "b941e38861e9e04517e088e58aee3ad374beb3723a31ed65d1bedb34d37eaca0",
@@ -101,8 +101,8 @@
       "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/35/35a6d4ea79ebe911f0d81705f7aace5d8ff0316b745b0311d56af50c9c237cb7"
     },
     "index.html": {
-      "hash": "ce9be4ffe274d7484e578d75d7ff786064eaf5d2c7e69ffcee117f4dbdbef046",
-      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/ce/ce9be4ffe274d7484e578d75d7ff786064eaf5d2c7e69ffcee117f4dbdbef046"
+      "hash": "08d886eb1ff75ce721f67816408cec3e42ac29209a714d5da57885a4841876b9",
+      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/08/08d886eb1ff75ce721f67816408cec3e42ac29209a714d5da57885a4841876b9"
     },
     "meta.json": {
       "hash": "2744db8c1a9ab581bca7c1ea8b0e2abb6507a933d6ad56d4eddb27bebd377dcb",
@@ -129,8 +129,100 @@
       "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/98/9873d703432e13bdef66546984e6640eb2c06e4eb0f016c5f5cea6fb1b1927b2"
     },
     "NARRATION.md": {
-      "hash": "7ea8d84817d693514de0b0a1377b75947facb3a7b3c1d043bd5fc3d2078fc6da",
-      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/7e/7ea8d84817d693514de0b0a1377b75947facb3a7b3c1d043bd5fc3d2078fc6da"
+      "hash": "64a998f9a1e8a63fee704b2d8da2f18e0eef5e9885e2f0f7f20115db88f4cd2a",
+      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/64/64a998f9a1e8a63fee704b2d8da2f18e0eef5e9885e2f0f7f20115db88f4cd2a"
+    },
+    "REVIEW.md": {
+      "hash": "617e2baac67df86638db0c93c6c2b3ff29ce21b5faa123c5d842aa87dc8a3efc",
+      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/61/617e2baac67df86638db0c93c6c2b3ff29ce21b5faa123c5d842aa87dc8a3efc"
+    },
+    "check-report.json": {
+      "hash": "0622c88ac7cf3b627703244563264836151214ad45505573fc54538b3b3f4a7d",
+      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/06/0622c88ac7cf3b627703244563264836151214ad45505573fc54538b3b3f4a7d"
+    },
+    "README.md": {
+      "hash": "26cbabefbbea6694700e6ee437ba7f866b9881721f17fa20d01da0a397b5b5b2",
+      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/26/26cbabefbbea6694700e6ee437ba7f866b9881721f17fa20d01da0a397b5b5b2"
+    },
+    ".media/manifest.jsonl": {
+      "hash": "d3d32b97b6c919bf7a9a53937e54f068ded372bb52c689103d41991293401858",
+      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/d3/d3d32b97b6c919bf7a9a53937e54f068ded372bb52c689103d41991293401858"
+    },
+    "assets/music-original.wav": {
+      "hash": "eb2dc5ed85822a240d06609b48e6f7d14fbf955f2847a67320a01a74c5e3f24a",
+      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/eb/eb2dc5ed85822a240d06609b48e6f7d14fbf955f2847a67320a01a74c5e3f24a"
+    },
+    "assets/music-bed.wav": {
+      "hash": "dc0f1b25c963f0260fbbe5f3d3b7a0a51df9bb1a094b92b92339f49b08a281b3",
+      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/dc/dc0f1b25c963f0260fbbe5f3d3b7a0a51df9bb1a094b92b92339f49b08a281b3"
+    },
+    "narration-plan.json": {
+      "hash": "09d4c39f17c9e5c9ee394a6c8f2468b89b06e6695778b81cc118d1927e4879b0",
+      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/09/09d4c39f17c9e5c9ee394a6c8f2468b89b06e6695778b81cc118d1927e4879b0"
+    },
+    "assets/voice-origin.wav": {
+      "hash": "e485fe020f3ddddd0958165d6f686b6dbc2aab8dee68ae2e5fec9252cb880403",
+      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/e4/e485fe020f3ddddd0958165d6f686b6dbc2aab8dee68ae2e5fec9252cb880403"
+    },
+    "assets/voice-reveal.wav": {
+      "hash": "390fe266bfc2903c3654df0d4373fce3ddcacf68447c819daec045640cf45126",
+      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/39/390fe266bfc2903c3654df0d4373fce3ddcacf68447c819daec045640cf45126"
+    },
+    "assets/voice-list.wav": {
+      "hash": "548eb0630bfef922f5648875dfd63b54879b1a888d3b38c9b49330a624202d73",
+      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/54/548eb0630bfef922f5648875dfd63b54879b1a888d3b38c9b49330a624202d73"
+    },
+    "assets/voice-checks.wav": {
+      "hash": "fe89ca72ebe56a02a5135dc9ea2f0438c797c4043900732a6f337a4f38cef5e3",
+      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/fe/fe89ca72ebe56a02a5135dc9ea2f0438c797c4043900732a6f337a4f38cef5e3"
+    },
+    "assets/voice-proof.wav": {
+      "hash": "49441484d3a2a24bf303055ceae18f9ca6bee2eda8e2ab88648fc9a351d4d6ef",
+      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/49/49441484d3a2a24bf303055ceae18f9ca6bee2eda8e2ab88648fc9a351d4d6ef"
+    },
+    "assets/voice-end.wav": {
+      "hash": "98b4d8e3553633e4daf9849f8654e9459514fe5116bd21a309794ca7751797d8",
+      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/98/98b4d8e3553633e4daf9849f8654e9459514fe5116bd21a309794ca7751797d8"
+    },
+    "voice-provenance.json": {
+      "hash": "2833cf7a3fc60ae7caf77cb771beec0c5f855f5f804d311182291f2d6fc12418",
+      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/28/2833cf7a3fc60ae7caf77cb771beec0c5f855f5f804d311182291f2d6fc12418"
+    },
+    "assets/voice-origin-fitted.wav": {
+      "hash": "8af68c89f1abc24fd8a4da79b3f7c0da57554b383dca458231439924546d5547",
+      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/8a/8af68c89f1abc24fd8a4da79b3f7c0da57554b383dca458231439924546d5547"
+    },
+    "assets/voice-reveal-fitted.wav": {
+      "hash": "2130d8171a12067d13b8a557f94b870518842ee7a306069fa8e9768055c94276",
+      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/21/2130d8171a12067d13b8a557f94b870518842ee7a306069fa8e9768055c94276"
+    },
+    "assets/voice-list-fitted.wav": {
+      "hash": "421c95ae5f71b1fb4b76afbe85a233a04600e8902f63183270dbc9a4c628182c",
+      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/42/421c95ae5f71b1fb4b76afbe85a233a04600e8902f63183270dbc9a4c628182c"
+    },
+    "assets/voice-checks-fitted.wav": {
+      "hash": "d4f4382de39093fc82060a93fc5b76f464a4556513c5f5b4b3303e7b12ed8f4c",
+      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/d4/d4f4382de39093fc82060a93fc5b76f464a4556513c5f5b4b3303e7b12ed8f4c"
+    },
+    "assets/voice-proof-fitted.wav": {
+      "hash": "91d0624770a4241c1bc7f8d4931f277f670e4f3be12d3b6fcec1d0ac7d34fb1a",
+      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/91/91d0624770a4241c1bc7f8d4931f277f670e4f3be12d3b6fcec1d0ac7d34fb1a"
+    },
+    "assets/voice-end-fitted.wav": {
+      "hash": "d3e71a4992f4e741569a7605284262918fb9c7132eaa8179d47532a8b0ea0ffd",
+      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/d3/d3e71a4992f4e741569a7605284262918fb9c7132eaa8179d47532a8b0ea0ffd"
+    },
+    "assets/narration.wav": {
+      "hash": "e3d7056a5a284ca333140c7060b40f7303b2ee62a75a022b4450bca16bc220c3",
+      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/e3/e3d7056a5a284ca333140c7060b40f7303b2ee62a75a022b4450bca16bc220c3"
+    },
+    "assets/final-mix.wav": {
+      "hash": "0b1bf4e4c5f6c33cdfaabd1851758ec9ab2a1673f11325e228a9f9212fe7d122",
+      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/0b/0b1bf4e4c5f6c33cdfaabd1851758ec9ab2a1673f11325e228a9f9212fe7d122"
+    },
+    "narration-timing.json": {
+      "hash": "f32271aec61e9892fa986f0c5290466ae07942877231aa0496b7ebd787ce68e2",
+      "content": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/f3/f32271aec61e9892fa986f0c5290466ae07942877231aa0496b7ebd787ce68e2"
     }
   },
   "revisions": {
@@ -207,14 +299,497 @@
           "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/7e/7ea8d84817d693514de0b0a1377b75947facb3a7b3c1d043bd5fc3d2078fc6da"
         }
       }
+    },
+    "45413b1b-8dd1-4cb6-a382-d4d874bef847": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793906509834,
+      "endedAt": 1793906511867,
+      "files": {
+        "check-report.json": {
+          "before": null,
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/ed/ed0d69b0b51fb2035dd4ddae0e6ae05f55b2d66c976ccdbab12b36998d4f4916"
+        },
+        "README.md": {
+          "before": null,
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/d1/d1ba911a60ef3d1dc2566f9eb48618841380fc31537e809ffb65d34a10195086"
+        },
+        "REVIEW.md": {
+          "before": null,
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/41/4101490daae130e8e7162aecc5f299f78643aab6759661144a1acfb84f594271"
+        }
+      }
+    },
+    "e0031016-260f-42d5-b6bf-7f8b17857c53": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793906657811,
+      "endedAt": 1793906659811,
+      "files": {
+        ".media/manifest.jsonl": {
+          "before": null,
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/d3/d3d32b97b6c919bf7a9a53937e54f068ded372bb52c689103d41991293401858"
+        }
+      }
+    },
+    "aa6e9cb2-8691-4249-ad10-e55da17828ca": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793906697820,
+      "endedAt": 1793906701881,
+      "files": {
+        "assets/music-bed.wav": {
+          "before": null,
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/dc/dc0f1b25c963f0260fbbe5f3d3b7a0a51df9bb1a094b92b92339f49b08a281b3"
+        },
+        "assets/music-original.wav": {
+          "before": null,
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/eb/eb2dc5ed85822a240d06609b48e6f7d14fbf955f2847a67320a01a74c5e3f24a"
+        },
+        "index.html": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/ce/ce9be4ffe274d7484e578d75d7ff786064eaf5d2c7e69ffcee117f4dbdbef046",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/10/1051553c7c9d8bfd6cff1df76b3b2dc16862b4f8fa16ca2dec10de1c29473430"
+        },
+        "narration-plan.json": {
+          "before": null,
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/c9/c9732e524da8ef608d8d4019dbf4cace96fbed8eb4cc3c1138b9d430438fcee4"
+        },
+        "README.md": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/d1/d1ba911a60ef3d1dc2566f9eb48618841380fc31537e809ffb65d34a10195086",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/86/86bffe86603bb702f3e0d1d18bc6b8650e956e0dfb7a083c9f9a52a20be0994f"
+        },
+        "REVIEW.md": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/41/4101490daae130e8e7162aecc5f299f78643aab6759661144a1acfb84f594271",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/f8/f8b1d9581c23d5b45cfc76888e92bfa2aba34c8b222e139ebc23f0431cf1a7a6"
+        },
+        "SOURCES.md": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/05/05489e737e905bb59f53b3979736dbc0fb01a05dd39d9474608f3df256f796b3",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/c7/c739b8d6f7c9d198227fb0b1f7198f4616f0815d638d241c15c2252399d730fb"
+        }
+      }
+    },
+    "99ce3804-9d9f-4b16-b87e-1c7cf6bf4415": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793906745838,
+      "endedAt": 1793906747842,
+      "files": {
+        "check-report.json": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/ed/ed0d69b0b51fb2035dd4ddae0e6ae05f55b2d66c976ccdbab12b36998d4f4916",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/71/71b087b8e4748a90e36a772990f57ac6555eaa3a32dd4c3ff70654ab4d743147"
+        },
+        "REVIEW.md": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/f8/f8b1d9581c23d5b45cfc76888e92bfa2aba34c8b222e139ebc23f0431cf1a7a6",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/aa/aa2f46aab7c6f7089688f062d0c5bf62120fb8cab2ecf77cc3eff200647da849"
+        }
+      }
+    },
+    "c74c1e52-2f3e-44ae-8f41-2a59dcc65ecb": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793907156904,
+      "endedAt": 1793907158905,
+      "files": {
+        "REVIEW.md": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/aa/aa2f46aab7c6f7089688f062d0c5bf62120fb8cab2ecf77cc3eff200647da849",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/a4/a4e45984954acb4a44684485998d048c1b3ef1a518a4cd41ceb37ab38abb97a1"
+        }
+      }
+    },
+    "3b0f3e3f-6948-482f-83b6-e16b0b9fd648": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793907472568,
+      "endedAt": 1793907474569,
+      "files": {
+        "narration-plan.json": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/c9/c9732e524da8ef608d8d4019dbf4cace96fbed8eb4cc3c1138b9d430438fcee4",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/09/09d4c39f17c9e5c9ee394a6c8f2468b89b06e6695778b81cc118d1927e4879b0"
+        }
+      }
+    },
+    "c343c3e7-469d-46e3-ada1-bc8eecbbb1c0": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793907771193,
+      "endedAt": 1793907773920,
+      "files": {
+        "assets/voice-origin.wav": {
+          "before": null,
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/0a/0a95ef0943cef17c37a11ce9d7c018177f83c3d09b87d1ed6224856bd6b9dfdd"
+        },
+        "assets/voice-reveal.wav": {
+          "before": null,
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/3a/3a68f4b3ba4f82cb71116ff5ce803e373fdb514b600ebdcb8e053b79c3bac9fb"
+        }
+      }
+    },
+    "b76c1ba0-f708-4bcc-a3ad-80f47ac68866": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793907810989,
+      "endedAt": 1793907812999,
+      "files": {
+        "assets/voice-origin.wav": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/0a/0a95ef0943cef17c37a11ce9d7c018177f83c3d09b87d1ed6224856bd6b9dfdd",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/7e/7e089d4f0cd71100805253c6d5da90376e2a6525374e49bf55e717a9ea2ec4e8"
+        },
+        "assets/voice-reveal.wav": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/3a/3a68f4b3ba4f82cb71116ff5ce803e373fdb514b600ebdcb8e053b79c3bac9fb",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/39/390fe266bfc2903c3654df0d4373fce3ddcacf68447c819daec045640cf45126"
+        },
+        "README.md": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/86/86bffe86603bb702f3e0d1d18bc6b8650e956e0dfb7a083c9f9a52a20be0994f",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/26/26cbabefbbea6694700e6ee437ba7f866b9881721f17fa20d01da0a397b5b5b2"
+        },
+        "SOURCES.md": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/c7/c739b8d6f7c9d198227fb0b1f7198f4616f0815d638d241c15c2252399d730fb",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/1d/1dc53bafc6e17545695dd4e9e5776cc6e4f70bd4380357a92077968702f5dac2"
+        }
+      }
+    },
+    "7ccfe083-8bb5-4feb-aa76-7be2f7a6eaee": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793907825434,
+      "endedAt": 1793907828418,
+      "files": {
+        "assets/voice-list.wav": {
+          "before": null,
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/d7/d74bfa4289b0345f4d794892afe123d9f055ae457d37e47700e8f6b8e84b7dad"
+        },
+        "assets/voice-origin.wav": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/7e/7e089d4f0cd71100805253c6d5da90376e2a6525374e49bf55e717a9ea2ec4e8",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/e4/e485fe020f3ddddd0958165d6f686b6dbc2aab8dee68ae2e5fec9252cb880403"
+        }
+      }
+    },
+    "46de3218-d8e9-4db7-b97b-625148ae0d0b": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793907830349,
+      "endedAt": 1793907832360,
+      "files": {
+        "assets/voice-checks.wav": {
+          "before": null,
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/8a/8a4d8d8303837c55e526e2771194ecc7fb72fc5cae0753f9778e73e1a3e2c1c0"
+        },
+        "assets/voice-list.wav": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/d7/d74bfa4289b0345f4d794892afe123d9f055ae457d37e47700e8f6b8e84b7dad",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/c7/c78cc8bb7f8e73eb704503e08cc2d159f4e7ca309d823c3fa2fae88851bfbdba"
+        }
+      }
+    },
+    "9ccc923a-4092-476d-a96a-a9cd827a7468": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793907866559,
+      "endedAt": 1793907868561,
+      "files": {
+        "assets/voice-checks.wav": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/8a/8a4d8d8303837c55e526e2771194ecc7fb72fc5cae0753f9778e73e1a3e2c1c0",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/6a/6a0fd1fd4b9819c99606550643891500c104e31c2d8970d39a114475afcd5d51"
+        },
+        "assets/voice-list.wav": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/c7/c78cc8bb7f8e73eb704503e08cc2d159f4e7ca309d823c3fa2fae88851bfbdba",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/54/548eb0630bfef922f5648875dfd63b54879b1a888d3b38c9b49330a624202d73"
+        }
+      }
+    },
+    "d225e940-acd8-4b88-9acb-1f517115a508": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793907869583,
+      "endedAt": 1793907871584,
+      "files": {
+        "assets/voice-checks.wav": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/6a/6a0fd1fd4b9819c99606550643891500c104e31c2d8970d39a114475afcd5d51",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/fe/fe89ca72ebe56a02a5135dc9ea2f0438c797c4043900732a6f337a4f38cef5e3"
+        }
+      }
+    },
+    "a42c6b2c-30dc-4ef6-bba1-6ca6591f7ebf": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793907871827,
+      "endedAt": 1793907873828,
+      "files": {
+        "assets/voice-proof.wav": {
+          "before": null,
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/9f/9fd8372bc1d0c4b388950c6b71cded53fd8b31fcbc1e0ef8d135c1226e6f66a3"
+        }
+      }
+    },
+    "e760676e-9e5c-45cc-9891-0764918ed41c": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793907874755,
+      "endedAt": 1793907876756,
+      "files": {
+        "assets/voice-end.wav": {
+          "before": null,
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/8d/8d40b99c5ea9ad019cd08cc35b2e462e657b41d25849d0cb5f59269f612c37c3"
+        },
+        "assets/voice-proof.wav": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/9f/9fd8372bc1d0c4b388950c6b71cded53fd8b31fcbc1e0ef8d135c1226e6f66a3",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/4a/4aa26c7000b1beb1f8cc088059b43dae38290ad356fc53efd7088b78bbd8d28d"
+        }
+      }
+    },
+    "f53a4cf4-10ba-4056-b057-7f1876fb7810": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793907883954,
+      "endedAt": 1793907885961,
+      "files": {
+        "assets/voice-end.wav": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/8d/8d40b99c5ea9ad019cd08cc35b2e462e657b41d25849d0cb5f59269f612c37c3",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/cf/cf1f9c4a8d7be7b6719f33332f7f2942de53709d319bedfd48e652ed535c6673"
+        },
+        "assets/voice-proof.wav": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/4a/4aa26c7000b1beb1f8cc088059b43dae38290ad356fc53efd7088b78bbd8d28d",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/bd/bd20fce6fd98be3196701c7f0ede3ed3ee327433fad280a85a79a8a5809f31f7"
+        },
+        "NARRATION.md": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/7e/7ea8d84817d693514de0b0a1377b75947facb3a7b3c1d043bd5fc3d2078fc6da",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/64/64a998f9a1e8a63fee704b2d8da2f18e0eef5e9885e2f0f7f20115db88f4cd2a"
+        }
+      }
+    },
+    "8bd826e8-a8a6-4387-b944-5485c3a626ff": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793907892545,
+      "endedAt": 1793907894545,
+      "files": {
+        "assets/voice-end.wav": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/cf/cf1f9c4a8d7be7b6719f33332f7f2942de53709d319bedfd48e652ed535c6673",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/98/98b4d8e3553633e4daf9849f8654e9459514fe5116bd21a309794ca7751797d8"
+        },
+        "assets/voice-proof.wav": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/bd/bd20fce6fd98be3196701c7f0ede3ed3ee327433fad280a85a79a8a5809f31f7",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/57/57eca484653673a81762ca5767fc1c19d732459c1fabbf7bcf03f774a11dedfc"
+        }
+      }
+    },
+    "3ed37a26-bad2-4525-b385-49b330381ced": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793907925243,
+      "endedAt": 1793907927246,
+      "files": {
+        "assets/voice-proof.wav": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/57/57eca484653673a81762ca5767fc1c19d732459c1fabbf7bcf03f774a11dedfc",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/49/49441484d3a2a24bf303055ceae18f9ca6bee2eda8e2ab88648fc9a351d4d6ef"
+        },
+        "voice-provenance.json": {
+          "before": null,
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/28/2833cf7a3fc60ae7caf77cb771beec0c5f855f5f804d311182291f2d6fc12418"
+        }
+      }
+    },
+    "ef68aa8a-5a40-4870-b2e9-6ee9b76215fc": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793907940390,
+      "endedAt": 1793907947759,
+      "files": {
+        "assets/final-mix.wav": {
+          "before": null,
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/0b/0b1bf4e4c5f6c33cdfaabd1851758ec9ab2a1673f11325e228a9f9212fe7d122"
+        },
+        "assets/narration.wav": {
+          "before": null,
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/e3/e3d7056a5a284ca333140c7060b40f7303b2ee62a75a022b4450bca16bc220c3"
+        },
+        "assets/voice-checks-fitted.wav": {
+          "before": null,
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/d4/d4f4382de39093fc82060a93fc5b76f464a4556513c5f5b4b3303e7b12ed8f4c"
+        },
+        "assets/voice-end-fitted.wav": {
+          "before": null,
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/d3/d3e71a4992f4e741569a7605284262918fb9c7132eaa8179d47532a8b0ea0ffd"
+        },
+        "assets/voice-list-fitted.wav": {
+          "before": null,
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/42/421c95ae5f71b1fb4b76afbe85a233a04600e8902f63183270dbc9a4c628182c"
+        },
+        "assets/voice-origin-fitted.wav": {
+          "before": null,
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/8a/8af68c89f1abc24fd8a4da79b3f7c0da57554b383dca458231439924546d5547"
+        },
+        "assets/voice-proof-fitted.wav": {
+          "before": null,
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/91/91d0624770a4241c1bc7f8d4931f277f670e4f3be12d3b6fcec1d0ac7d34fb1a"
+        },
+        "assets/voice-reveal-fitted.wav": {
+          "before": null,
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/21/2130d8171a12067d13b8a557f94b870518842ee7a306069fa8e9768055c94276"
+        },
+        "narration-timing.json": {
+          "before": null,
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/f3/f32271aec61e9892fa986f0c5290466ae07942877231aa0496b7ebd787ce68e2"
+        }
+      }
+    },
+    "c480d6d5-5423-46a3-9880-c69921d47e99": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793907966190,
+      "endedAt": 1793907968193,
+      "files": {
+        "index.html": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/10/1051553c7c9d8bfd6cff1df76b3b2dc16862b4f8fa16ca2dec10de1c29473430",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/08/08d886eb1ff75ce721f67816408cec3e42ac29209a714d5da57885a4841876b9"
+        },
+        "REVIEW.md": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/a4/a4e45984954acb4a44684485998d048c1b3ef1a518a4cd41ceb37ab38abb97a1",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/4d/4d2b7761db99ef6adf678f968c512691ad1a62f90957768d7453b8650a268e8a"
+        }
+      }
+    },
+    "916bbb01-81f7-4446-9da0-95019a21abe0": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793907992621,
+      "endedAt": 1793907994625,
+      "files": {
+        "check-report.json": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/71/71b087b8e4748a90e36a772990f57ac6555eaa3a32dd4c3ff70654ab4d743147",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/06/0622c88ac7cf3b627703244563264836151214ad45505573fc54538b3b3f4a7d"
+        },
+        "REVIEW.md": {
+          "before": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/4d/4d2b7761db99ef6adf678f968c512691ad1a62f90957768d7453b8650a268e8a",
+          "after": "/Users/macbook/.cache/hyperframes/history/b4bc7767-ef47-4cd2-a337-0a50db591b6c/blobs/61/617e2baac67df86638db0c93c6c2b3ff29ce21b5faa123c5d842aa87dc8a3efc"
+        }
+      }
     }
   },
   "checks": {
     "latest": {
-      "revision": null,
-      "id": "f532b933-f15f-4366-a409-8ba29df4845e"
+      "revision": "c480d6d5-5423-46a3-9880-c69921d47e99",
+      "id": "4c9376d1-46e5-431f-87c4-b97555006aeb"
     },
-    "revisions": {},
+    "revisions": {
+      "aa6e9cb2-8691-4249-ad10-e55da17828ca": [
+        {
+          "id": "ff17566f-26ce-4de6-8161-7433b9850cd1",
+          "scope": "project",
+          "report": "/Users/macbook/Drop Check/video/dropcheck-film/.hyperframes/artifacts/checks/ff17566f-26ce-4de6-8161-7433b9850cd1.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 10000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1793906732612,
+          "contentHash": "a5aaa3c7b01646b7dd8873cdca2d2ff519fc8d63306ad8c8a71f2f7e8bbd119a",
+          "revision": "aa6e9cb2-8691-4249-ad10-e55da17828ca",
+          "inputFingerprint": "8a7f014f6c44098ad46d38c05bd9a80cefca254f5b95c40fb1690655dbf229ee",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ],
+      "c480d6d5-5423-46a3-9880-c69921d47e99": [
+        {
+          "id": "4c9376d1-46e5-431f-87c4-b97555006aeb",
+          "scope": "project",
+          "report": "/Users/macbook/Drop Check/video/dropcheck-film/.hyperframes/artifacts/checks/4c9376d1-46e5-431f-87c4-b97555006aeb.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 10000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1793907982256,
+          "contentHash": "a5aaa3c7b01646b7dd8873cdca2d2ff519fc8d63306ad8c8a71f2f7e8bbd119a",
+          "revision": "c480d6d5-5423-46a3-9880-c69921d47e99",
+          "inputFingerprint": "32a587775ca7630ea3b96573e26d063a3039ac78e73b1cb5c8661973bacfe2c8",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
     "unversioned": [
       {
         "id": "74439af2-e1ce-44c2-aeaa-5b1e9fd6f848",
@@ -1291,5 +1866,18 @@
         "attribution": "unversioned"
       }
     ]
-  }
+  },
+  "renders": {
+    "latest": {
+      "id": "1ff89253-f34d-45d3-825a-bcd9cc38e162",
+      "completedAt": 1793906603964,
+      "output": "/Users/macbook/Drop Check/renders/dropcheck-demo.mp4",
+      "status": "completed",
+      "revision": "45413b1b-8dd1-4cb6-a382-d4d874bef847"
+    },
+    "retainedRevisions": [
+      "45413b1b-8dd1-4cb6-a382-d4d874bef847"
+    ]
+  },
+  "pendingArtifactCleanup": []
 }

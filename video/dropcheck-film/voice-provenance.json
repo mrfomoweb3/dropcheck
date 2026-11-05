@@ -1,0 +1,44 @@
+[
+  {
+    "id": "origin",
+    "voice": "af_heart",
+    "host": "https://hexgrad-kokoro-tts.hf.space",
+    "bytes": 344444,
+    "phonemes": "\u0250 k\u0259mj\u02c8un\u0259Ti p\u02c8Ost \u0279\u0259p\u02c8\u0254\u0279T\u1d7bd t\u02c8Ok\u1d4anz st\u02c8\u028ck w\u026a\u00f0\u02c8Wt n\u02c8AT\u026av b\u02c8\u00e6l\u0259ns. w\u02cc\u028ct \u026af wi \u02a7\u02c8\u025bkt \u00f0\u0259 \u0279\u0259s\u02c8\u026api\u0259nt b\u0259f\u02c8\u0254\u0279 s\u02c8\u025bnd\u026a\u014b?"
+  },
+  {
+    "id": "reveal",
+    "voice": "af_heart",
+    "host": "https://hexgrad-kokoro-tts.hf.space",
+    "bytes": 213644,
+    "phonemes": "d\u0279\u02c8\u0251p \u02a7\u02c8\u025bk b\u0279\u02c8\u026a\u014bz p\u0279\u02ccifl\u02c8It \u02a7\u02c8\u025bks t\u0259 p\u02c8\u0254\u0279T\u1d4al d\u02c8\u0251t t\u02c8Ok\u1d4an d\u02cc\u026ast\u0279\u0259bj\u02c8u\u0283\u0259nz."
+  },
+  {
+    "id": "list",
+    "voice": "af_heart",
+    "host": "https://hexgrad-kokoro-tts.hf.space",
+    "bytes": 340844,
+    "phonemes": "p\u02c8Ast \u0259d\u0279\u02c8\u025bs\u1d7bz \u0254\u0279 \u02c8\u028cpl\u02ccOd \u0250 s\u02c8i \u02c8\u025bs v\u02c8i \u02c8i\u02a7 \u0279\u02c8O \u0261\u025bts \u02a7\u02c8\u025bkt \u0259\u0261\u02c8\u025bnst l\u02c8Iv \u02a7\u02c8An st\u02c8At, w\u026a\u00f0 \u0250 \u0279\u02c8iz\u1d4an ju k\u00e6n \u0279\u02c8id."
+  },
+  {
+    "id": "checks",
+    "voice": "af_heart",
+    "host": "https://hexgrad-kokoro-tts.hf.space",
+    "bytes": 388844,
+    "phonemes": "\u00f0\u02cc\u026as f\u0279\u02c8\u025b\u0283 w\u02c8\u0251l\u0259t n\u02c8idz n\u02c8AT\u026av t\u02c8Ok\u1d4anz f\u02c8\u025c\u0279st. d\u0279\u02c8\u0251p \u02a7\u02c8\u025bk \u02c8\u00e6dz \u00f0\u0259 t\u02c8\u0251p\u02cc\u028cp t\u0259 j\u028a\u0279 pl\u02c8\u00e6n. \u0279\u0259vj\u02c8u \u00f0\u0259 f\u02c8\u026aks\u1d7bz, \u00f0\u02c8\u025bn s\u02c8In w\u02c8\u028cn b\u02c8\u00e6\u02a7."
+  },
+  {
+    "id": "proof",
+    "voice": "af_heart",
+    "host": "https://hexgrad-kokoro-tts.hf.space",
+    "bytes": 400844,
+    "phonemes": "\u0250 \u0279\u0259k\u02c8\u0254\u0279d\u1d7bd t\u02c8\u025bst k\u0259nf\u02c8\u025c\u0279md s\u02cc\u025bv\u0259nt\u02c8in t\u0279\u02c8\u00e6nsf\u0259\u0279z \u00e6nd f\u02c8Iv t\u02c8\u0251p\u02cc\u028cps \u026an w\u02c8\u028cn s\u02c8Ind b\u02c8\u00e6\u02a7. \u00f0\u0259 bl\u02c8\u0251k \u0279\u02c8\u025bf\u0259\u0279\u0259ns \u026az \u026an \u02ccW\u0259\u0279 p\u0279\u02c8uf l\u02c8\u0254\u0261."
+  },
+  {
+    "id": "end",
+    "voice": "af_heart",
+    "host": "https://hexgrad-kokoro-tts.hf.space",
+    "bytes": 147644,
+    "phonemes": "d\u0279\u02c8\u0251p \u02a7\u02c8\u025bk. \u02a7\u02c8\u025bk j\u028a\u0279 \u02c8\u025b\u0279d\u0279\u02cc\u0251p b\u0259f\u02c8\u0254\u0279 \u026at \u0283\u02c8\u026aps."
+  }
+]

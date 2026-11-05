@@ -1,0 +1,108 @@
+{
+  "ok": true,
+  "strict": false,
+  "browserSkipped": false,
+  "lint": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "filesScanned": 7
+  },
+  "runtime": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": []
+  },
+  "layout": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "duration": 48,
+    "samples": [
+      2.667,
+      8,
+      13.333,
+      18.667,
+      24,
+      29.333,
+      34.667,
+      40,
+      45.333
+    ],
+    "transitionSamples": [],
+    "transitionSamplesDropped": 0,
+    "tolerance": 2,
+    "totalIssueCount": 0,
+    "truncated": false
+  },
+  "motion": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": false,
+    "samples": 0
+  },
+  "contrast": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": true,
+    "samples": [
+      2.667,
+      13.333,
+      24,
+      34.667,
+      45.333
+    ],
+    "checked": 17,
+    "passed": 17
+  },
+  "craft": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": true,
+    "step": 0.125,
+    "samples": 384
+  },
+  "audio": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": []
+  },
+  "hdr": {
+    "autoPromotion": null,
+    "inspection": "available"
+  },
+  "snapshots": {
+    "enabled": false,
+    "files": [],
+    "times": [],
+    "findingFiles": []
+  },
+  "saved": {
+    "id": "4c9376d1-46e5-431f-87c4-b97555006aeb",
+    "revision": "c480d6d5-5423-46a3-9880-c69921d47e99",
+    "report": "/Users/macbook/Drop Check/video/dropcheck-film/.hyperframes/artifacts/checks/4c9376d1-46e5-431f-87c4-b97555006aeb.json",
+    "attribution": "recorded-revision"
+  },
+  "_meta": {
+    "version": "0.8.223",
+    "latestVersion": "0.9.10",
+    "updateAvailable": true
+  }
+}

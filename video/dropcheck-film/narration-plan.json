@@ -1,0 +1,50 @@
+{
+  "provider": "kokoro-onnx",
+  "voiceDirection": "Clear warm English narrator, measured product-demo delivery, no hype. Pronounce Dropcheck as drop check and Portaldot as portal dot. Generate separate clips and fit each within its slot; extend visual timing if necessary rather than truncate speech.",
+  "lines": [
+    {
+      "id": "origin",
+      "start": 0,
+      "slot": 9,
+      "text": "A community post reported tokens stuck without native balance. What if we checked the recipient before sending?",
+      "spokenText": "A community post reported tokens stuck without native balance. What if we checked the recipient before sending?"
+    },
+    {
+      "id": "reveal",
+      "start": 9,
+      "slot": 5,
+      "text": "Dropcheck brings pre-flight checks to Portaldot token distributions.",
+      "spokenText": "Drop check brings pre-flight checks to Portal dot token distributions."
+    },
+    {
+      "id": "list",
+      "start": 14,
+      "slot": 9,
+      "text": "Paste addresses or upload a CSV. Each row gets checked against live chain state, with a reason you can read.",
+      "spokenText": "Paste addresses or upload a C S V. Each row gets checked against live chain state, with a reason you can read."
+    },
+    {
+      "id": "checks",
+      "start": 23,
+      "slot": 10,
+      "text": "This fresh wallet needs native tokens first. Dropcheck adds the top-up to your plan. Review the fixes, then sign one batch.",
+      "spokenText": "This fresh wallet needs native tokens first. Drop check adds the top-up to your plan. Review the fixes, then sign one batch."
+    },
+    {
+      "id": "proof",
+      "start": 33,
+      "slot": 10,
+      "text": "A recorded test confirmed seventeen transfers and five top-ups in one signed batch. The block reference is in our proof log.",
+      "spokenText": "A recorded test confirmed seventeen transfers and five top-ups in one signed batch. The block reference is in our proof log."
+    },
+    {
+      "id": "end",
+      "start": 43,
+      "slot": 5,
+      "text": "Dropcheck. Check your airdrop before it ships.",
+      "spokenText": "Drop check. Check your airdrop before it ships."
+    }
+  ],
+  "voice": "af_heart",
+  "speed": 1.02
+}
