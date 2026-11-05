@@ -15,13 +15,12 @@ export function ResultsTable({ dc }: { dc: Dropcheck }) {
   if (!result) return <Empty>Paste recipients on the left, or click <b>Load demo list</b>.</Empty>;
 
   const dec = asset.decimals;
-  const sent = Object.keys(run.outcomes).length > 0;
 
   return (
     <div className="card overflow-hidden">
       <div className="flex items-center justify-between border-b border-zinc-200 px-4 py-2 text-xs text-zinc-500 dark:border-zinc-800">
         <span>{result.rows.length} rows</span>
-        <span aria-live="polite">{checking ? 'Checking chain state…' : 'Checked against live chain state'}</span>
+        <span aria-live="polite">{checking || result.runIssues.some((i) => i.message.startsWith('Still reading')) ? 'Checking chain state…' : 'Checked against live chain state'}</span>
       </div>
       <div className="overflow-x-auto">
         <table className="block w-full text-left text-sm sm:table">
@@ -32,7 +31,6 @@ export function ResultsTable({ dc }: { dc: Dropcheck }) {
               <th className="px-3 py-2 text-right">Amount</th>
               <th className="px-3 py-2">Status</th>
               <th className="px-3 py-2">What we found</th>
-              {sent && <th className="px-3 py-2">On-chain</th>}
             </tr>
           </thead>
           <tbody className="block sm:table-row-group">
@@ -56,7 +54,18 @@ export function ResultsTable({ dc }: { dc: Dropcheck }) {
                       {r.amount !== undefined ? formatUnits(r.amount, dec) : r.amountInput || '—'}
                       {r.mergedFrom && <div className="text-[10px] text-zinc-500">combined</div>}
                     </td>
-                    <td className="col-span-3 px-3 pb-1 pl-11 sm:p-3 sm:px-3 sm:py-2"><StatusChip severity={sev} label={chipLabel(r, o?.status)} /></td>
+                    <td className="col-span-3 px-3 pb-1 pl-11 sm:p-3 sm:px-3 sm:py-2">
+                      <StatusChip severity={sev} label={chipLabel(r, o?.status)} />
+                      {/* After sending: block link + balance change live under the chip, so no extra column. */}
+                      {o?.block && (
+                        <div className="mt-1 whitespace-nowrap text-xs">
+                          <a className="text-meadow-700 hover:underline dark:text-meadow-400" href={blockLink(o.block)} target="_blank" rel="noreferrer">block #{o.block}</a>
+                          {o.after !== undefined && (
+                            <div className="font-mono text-[11px] text-zinc-500">{formatUnits(o.before ?? 0n, dec, 4)} → {formatUnits(o.after ?? 0n, dec, 4)}</div>
+                          )}
+                        </div>
+                      )}
+                    </td>
                     <td className="col-span-3 px-3 pb-2 pl-11 text-xs sm:px-3 sm:py-2">
                       <div>{top.message}</div>
                       {top.fix && <div className="mt-0.5 text-zinc-500">{top.fix}</div>}
@@ -66,21 +75,11 @@ export function ResultsTable({ dc }: { dc: Dropcheck }) {
                         </button>
                       )}
                     </td>
-                    {sent && (
-                      <td className="col-span-3 px-3 pb-2 pl-11 text-xs sm:px-3 sm:py-2">
-                        {o?.block ? <a className="text-meadow-700 hover:underline dark:text-meadow-400" href={blockLink(o.block)} target="_blank" rel="noreferrer">#{o.block}</a> : '—'}
-                        {o?.after !== undefined && (
-                          <div className="font-mono text-zinc-500">
-                            {formatUnits(o.before ?? 0n, dec, 4)} → {formatUnits(o.after ?? 0n, dec, 4)}
-                          </div>
-                        )}
-                      </td>
-                    )}
                   </tr>
                   {expanded && (
                     <tr className="block bg-meadow-50/60 sm:table-row dark:bg-zinc-950/60">
                       <td className="hidden sm:table-cell" />
-                      <td colSpan={sent ? 5 : 4} className="block space-y-1 px-3 pb-3 pl-11 text-xs sm:table-cell sm:pl-3">
+                      <td colSpan={4} className="block space-y-1 px-3 pb-3 pl-11 text-xs sm:table-cell sm:pl-3">
                         {ranked.map((i, k) => (
                           <div key={k}>
                             <span className="font-mono text-[10px] text-zinc-500">{i.code}</span> {i.message}

@@ -55,6 +55,9 @@ export function decodeDispatchError(api: ApiPromise, err: any): string {
     const m = api.registry.findMetaError(err.asModule);
     return `${m.section}.${m.name}: ${m.docs.join(' ').trim()}`;
   }
+  // TokenError / ArithmeticError etc. carry their variant as `type` (e.g. Token -> CannotCreate).
+  if (err?.isToken) return `TokenError.${err.asToken.type}`;
+  if (err?.isArithmetic) return `ArithmeticError.${err.asArithmetic.type}`;
   return err?.toString?.() ?? String(err);
 }
 
@@ -82,7 +85,10 @@ export async function signAndSend(
       dryRun.available = true;
       if (r.isErr) {
         dryRun.ok = false;
-        dryRun.error = `Invalid transaction: ${r.asErr.toString()}`;
+        const inv: any = r.asErr;
+        dryRun.error = inv.isInvalid && inv.asInvalid.isPayment
+          ? "Your account can't pay the network fee (not enough tPOT)."
+          : `Invalid transaction: ${inv.toString()}`;
       } else if (r.asOk.isErr) {
         dryRun.ok = false;
         dryRun.error = decodeDispatchError(api, r.asOk.asErr);
