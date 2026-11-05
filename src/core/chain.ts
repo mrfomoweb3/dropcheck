@@ -140,12 +140,14 @@ export async function readAccounts(
  */
 export async function resolveEvm(api: ApiPromise, h160s: string[]): Promise<Record<string, string>> {
   const out: Record<string, string> = {};
-  const call = (api.call as any).reviveApi?.accountId;
-  if (!call) return out;
+  // Raw state_call, not api.call.reviveApi: the shipped metadata snapshot is v14 (no runtime-API section),
+  // so api.call.reviveApi is undefined there and every H160 would silently get the fallback mapping.
+  // Input is the SCALE of [u8; 20] (the raw bytes); output is AccountId32 (32 raw bytes).
   await Promise.all(
     [...new Set(h160s)].map(async (h) => {
       try {
-        out[h] = u8aToHex((await call(h)).toU8a());
+        const res = (await api.rpc.state.call('ReviveApi_account_id', h)).toU8a(true);
+        if (res.length === 32) out[h] = u8aToHex(res);
       } catch {
         /* fallback applied by classifier */
       }

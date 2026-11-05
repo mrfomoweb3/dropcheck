@@ -28,6 +28,6 @@ DEMO_OUT=/tmp/forkdemo pnpm seed-demo                     # demo asset + 20-row 
 DEMO_JSON=/tmp/forkdemo/demo.json PROOF_FILE=/tmp/forkdemo/PROOF.fork.md pnpm test:live
 tsx spike/failure-paths.ts <assetId>                      # dry-run safety net
 DEMO_OUT=/tmp/forkdemo pnpm seed-demo && pnpm dev --port 3001 &   # fresh list, app on the fork
-node scripts/ui-e2e-fork.mjs http://localhost:3001/app /tmp/forkdemo/demo.json /tmp/e2e        # happy path
-E2E_CANCEL=1 node scripts/ui-e2e-fork.mjs http://localhost:3001/app /tmp/forkdemo/demo.json /tmp/e2e   # cancel path
+node scripts/ui-e2e.mjs http://localhost:3001/app /tmp/forkdemo/demo.json /tmp/e2e        # happy path
+E2E_CANCEL=1 node scripts/ui-e2e.mjs http://localhost:3001/app /tmp/forkdemo/demo.json /tmp/e2e   # cancel path
 ```

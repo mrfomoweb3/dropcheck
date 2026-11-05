@@ -6,7 +6,8 @@ import { Keyring } from '@polkadot/keyring';
 import { cryptoWaitReady, decodeAddress } from '@polkadot/util-crypto';
 import { u8aToHex } from '@polkadot/util';
 import { CHAIN } from '../src/config/chain.ts';
-import { connect, readIdentity, checkIdentity, readAsset, readAccounts, resolveEvm } from '../src/core/chain.ts';
+import { readIdentity, checkIdentity, readAsset, readAccounts, resolveEvm } from '../src/core/chain.ts';
+import { connectNode } from './node-connect.ts';
 import { parseInput } from '../src/core/input.ts';
 import { parseAddress, h160FallbackAccount } from '../src/core/address.ts';
 import { checkRows } from '../src/core/checks.ts';
@@ -21,7 +22,7 @@ const flag = (k: string) => process.argv.includes(k);
 export async function runHeadless(opts: { assetId: string; csv: string; senderAddress?: string; send?: boolean; log?: (s: string) => void }) {
   const log = opts.log ?? console.log;
   await cryptoWaitReady();
-  const api = await connect(CHAIN.wss);
+  const api = await connectNode(CHAIN.wss);
   try {
     const id = await readIdentity(api);
     const chk = checkIdentity(id, { genesis: CHAIN.expectedGenesis, specName: CHAIN.expectedSpecName });

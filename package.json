@@ -17,7 +17,7 @@
     "spike:funded": "tsx --env-file=.env spike/funded.ts",
     "fetch-metadata": "tsx scripts/fetch-metadata.ts",
     "smoke": "node scripts/ui-smoke.mjs",
-    "e2e:fork": "node scripts/ui-e2e-fork.mjs",
+    "e2e:fork": "node scripts/ui-e2e.mjs",
     "failure-paths": "tsx --env-file=.env spike/failure-paths.ts"
   },
   "dependencies": {

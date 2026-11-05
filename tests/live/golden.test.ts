@@ -4,7 +4,8 @@ import { readFileSync, existsSync, appendFileSync } from 'node:fs';
 import 'dotenv/config';
 import { runHeadless } from '../../scripts/run-demo-headless';
 import { blockLink } from '@/config/chain';
-import { connect, resolveEvm } from '@/core/chain';
+import { resolveEvm } from '@/core/chain';
+import { connectNode } from '../../scripts/node-connect';
 import { CHAIN } from '@/config/chain';
 import { encodeAddress } from '@polkadot/util-crypto';
 
@@ -15,7 +16,7 @@ const ready = !!process.env.DEMO_SEED_FILE && existsSync(DEMO_JSON);
 
 describe.skipIf(!ready)('live golden path on V3', () => {
   it('A2 live: ReviveApi.account_id resolves the guide example', async () => {
-    const api = await connect(CHAIN.wss, 120_000);
+    const api = await connectNode(CHAIN.wss);
     const m = await resolveEvm(api, ['0xf7ec65d11e35375a250e474059a917b537804142']);
     await api.disconnect();
     expect(encodeAddress(m['0xf7ec65d11e35375a250e474059a917b537804142'], 42)).toBe('5Hfmuhj1AHrTBJiC9zUPnJo1cfG2G52LLMwofSigBnjtto8Y');
@@ -40,6 +41,6 @@ describe.skipIf(!ready)('live golden path on V3', () => {
     for (const f of fresh) expect(after[f.account].assetBalance).toBe(f.amount);
     // A7
     expect(after[senderHex].nativeFree >= ed).toBe(true);
-    appendFileSync(PROOF_FILE, `\n| ${new Date().toISOString()} | live test A5–A7 | \`${r.txHash}\` | [#${r.blockNumber}](${blockLink(r.blockNumber)}) | 5 top-ups + 17 asset transfers, asset ${demo.assetId} |\n`);
+    appendFileSync(PROOF_FILE, `| ${new Date().toISOString()} | live test A5–A7 | \`${r.txHash}\` | [#${r.blockNumber}](${blockLink(r.blockNumber)}) | 5 top-ups + 17 asset transfers, asset ${demo.assetId} |\n`);
   });
 });

@@ -7,7 +7,8 @@ import { blake2AsU8a, cryptoWaitReady, encodeAddress } from '@polkadot/util-cryp
 import { u8aToHex } from '@polkadot/util';
 import type { ApiPromise } from '@polkadot/api';
 import { CHAIN } from '../src/config/chain.ts';
-import { connect, readIdentity, checkIdentity, resolveEvm, readAccounts } from '../src/core/chain.ts';
+import { connectNode } from './node-connect.ts';
+import { readIdentity, checkIdentity, resolveEvm, readAccounts } from '../src/core/chain.ts';
 import { h160FallbackAccount } from '../src/core/address.ts';
 import { signAndSend } from '../src/core/submit.ts';
 
@@ -35,7 +36,7 @@ async function main() {
   const me = kr.addFromUri(seed);
   const derive = (path: string) => kr.addFromUri(`${seed}//dropcheck//${path}`).address;
 
-  const api = await connect(CHAIN.wss);
+  const api = await connectNode(CHAIN.wss);
   const id = await readIdentity(api);
   if (!checkIdentity(id, { genesis: CHAIN.expectedGenesis, specName: CHAIN.expectedSpecName }).ok) throw new Error('wrong chain');
   const ed = id.ed;
@@ -44,7 +45,11 @@ async function main() {
   // 1. Asset (non-sufficient, min_balance 5 DROP, 6 decimals).
   const prev = existsSync(DEMO_JSON) ? JSON.parse(readFileSync(DEMO_JSON, 'utf8')) : {};
   let assetId: string | undefined = prev.assetId;
-  if (assetId && ((await api.query.assets.asset(assetId)) as any).isNone) assetId = undefined;
+  // Reuse only an asset this demo key owns (the shipped preview demo.json points at pUSD 7777, which we can't send).
+  if (assetId) {
+    const a = (await api.query.assets.asset(assetId)) as any;
+    if (a.isNone || a.unwrap().owner.toString() !== me.address) assetId = undefined;
+  }
   if (!assetId) {
     let candidate = 0;
     for (let i = 0; i < 20; i++) {

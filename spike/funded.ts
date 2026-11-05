@@ -1,7 +1,8 @@
 // Spike steps 5-9 (needs a funded DEMO_SEED_FILE). Prints every error string, tx hash and block.
 // Usage: node --env-file=.env spike/funded.ts [assetId]
 import { readFileSync, existsSync, writeFileSync } from 'node:fs';
-import { ApiPromise, WsProvider } from '@polkadot/api';
+import type { ApiPromise } from '@polkadot/api';
+import { connectNode } from '../scripts/node-connect.ts';
 import { Keyring } from '@polkadot/keyring';
 import { cryptoWaitReady, mnemonicGenerate } from '@polkadot/util-crypto';
 import { decodeDispatchError } from '../src/core/submit.ts';
@@ -34,7 +35,7 @@ async function main() {
   if (!seedFile) throw new Error('DEMO_SEED_FILE not set');
   const kr = new Keyring({ type: 'sr25519', ss58Format: 42 });
   const me = kr.addFromUri(readFileSync(seedFile, 'utf8').trim());
-  const api = await ApiPromise.create({ provider: new WsProvider(WSS), noInitWarn: true });
+  const api = await connectNode(WSS);
   const ed = BigInt(api.consts.balances.existentialDeposit.toString());
   const UNIT = 10n ** 14n;
   const acct: any = await api.query.system.account(me.address);
