@@ -1,0 +1,9 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "buildCommand": "pnpm build",
+  "headers": [
+    { "source": "/metadata.json", "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }] }
+  ]
+}

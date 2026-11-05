@@ -1,0 +1,5 @@
+{
+  "assetId": "7777",
+  "csv": "address,amount\n5FjkqQEgRvZzHYLciHzs1hZnhEjpAnyyPjiWwDJ7bg7ireZM,10\n5CAk5NVWxnDLgu94BwqTU5GTY9E8j1jDQpEFfLUKNvTTA5Yi,11\n5DUcqxwH6oipKutbTsRJ6Fcgskozi5nkxVsv4DhA87FQKbdD,12\n5DEvcFbQkAPnvB4s2advpNyWEynGYEfHt1hRwxDnQu6bZtEN,13\n5Gpson8guxR2uxzMTvNSFacfWdy2eS2QkD8MZ9BU9xBFqB3J,14\n5DSYDof12UGEPbASnwygi2kGcceU9w6eqXFdGpBXMEXoFchy,15\n5GgDhHRTjFBwd63wy4KjEUjE352TUEpWm5TXJHpMf7bNa4nt,5\n5Gs64k1L1zcuRTGRfKrBQcVsWpXYRN8bfq73pN32S3cvEFWY,5\n5GxYBim87ECLJYkt1WNRc5FjdivmrEHeq5Z2UzBFAq6ip1jN,5\n0xf7eC65d11e35375A250e474059a917B537804142,7.5\n12eh6iyMqEcWJjWbfGYG6Rv8tFTMxR9VAscXhwHYbG8uaQGm,3\n5FjkqQEgRvZzHYLciHzs1hZnhEjpAnyyPjiWwDJ7bg7ireZM,2\n5GgDhHRTjFBwd63wy4KjEUjE352TUEpWm5TXJHpMf7bNaabc,1\n5Gmjp1Qahb8NDPZ58vxEKsRz8UoZTHUW17mvCyXCttSRGTXA,0.001\n5CAk5NVWxnDLgu94BwqTU5GTY9E8j1jDQpEFfLUKNvTTA5Yi,50000\n",
+  "note": "Preview list on pUSD (asset 7777, a public V3 test token): real holders, fresh wallets, a MetaMask address and deliberate mistakes. Checked live; sending needs a wallet holding pUSD."
+}
