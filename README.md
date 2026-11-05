@@ -10,6 +10,15 @@
 - **Demo video:** _TBD_
 - **Team:** _TBD_
 
+## Status (2026-11-05)
+| | |
+|---|---|
+| Check engine, planner, units, address resolution | ✅ 32 unit tests (`pnpm test`) |
+| Live checks against V3 chain state (preview list on pUSD, asset 7777) | ✅ verified in the browser and headless (`pnpm demo:headless`) |
+| H160 → native mapping via `ReviveApi.account_id` | ✅ verified on V3 |
+| Fee estimate (`paymentInfo`) for the batch | ✅ verified on V3 |
+| Signed `batch_all` send on V3 (top-ups + transfers) | ⏳ **not yet run**: the demo sender has no tPOT yet. No tx hash is claimed until it has run; see [docs/PROOF.md](docs/PROOF.md) |
+
 ## The 30-second test
 1. Open the app. The demo list is already loaded and checked against live chain state.
 2. Rows go **red / amber / green**, each with a plain-English reason and the fix that will be applied.
