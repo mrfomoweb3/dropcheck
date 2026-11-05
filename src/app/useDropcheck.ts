@@ -90,7 +90,8 @@ export function useDropcheck() {
   const [senderState, setSenderState] = useState<AccountState | null>(null);
   const [checking, setChecking] = useState(false);
   const [parseErrors, setParseErrors] = useState<string[]>([]);
-  const [fee, setFee] = useState<bigint | undefined>();
+  // A fee is only valid for the exact plan + sender it was estimated for.
+  const [feeState, setFeeState] = useState<{ key: string; value: bigint } | null>(null);
   const [feeError, setFeeError] = useState<string>();
   const [run, setRun] = useState<RunState>({ phase: 'idle', results: [], outcomes: {} });
 
@@ -215,7 +216,7 @@ export function useDropcheck() {
     return () => { cancelled = true; clearTimeout(t); };
   }, [ready, asset, parsed, sender, refreshTick]);
 
-  const snapshot: ChainSnapshot | null = useMemo(() => {
+  const baseSnapshot: ChainSnapshot | null = useMemo(() => {
     if (!identity || !asset) return null;
     return {
       ss58: identity.ss58,
@@ -226,36 +227,45 @@ export function useDropcheck() {
       accounts: chainState.accounts,
       evmMap: chainState.evmMap,
       sender: sender && senderState ? { account: toHex(sender.address), state: senderState } : undefined,
-      feeEstimate: fee,
       topupBufferBps: CHAIN.topupBufferBps,
     };
-  }, [identity, asset, chainState, sender, senderState, fee]);
+  }, [identity, asset, chainState, sender, senderState]);
+
+  // Rows and plan never depend on the fee; the fee only feeds the sender-balance run check.
+  const planResult: CheckResult | null = useMemo(
+    () => (baseSnapshot && parsed.rows.length ? checkRows(parsed.rows, baseSnapshot, { mergeDuplicates: merge }) : null),
+    [baseSnapshot, parsed, merge],
+  );
+  const plan: Plan | null = useMemo(() => (planResult && baseSnapshot ? buildPlan(planResult.rows, baseSnapshot) : null), [planResult, baseSnapshot]);
+  const planKey = plan ? plan.chunks.map((c) => c.calls.map((x) => `${x.kind}${x.dest}${x.amount}`).join()).join('|') : '';
+  const feeKey = `${planKey}#${sender?.address ?? ''}`;
+  const fee = feeState?.key === feeKey ? feeState.value : undefined;
 
   const result: CheckResult | null = useMemo(
-    () => (snapshot && parsed.rows.length ? checkRows(parsed.rows, snapshot, { mergeDuplicates: merge }) : null),
-    [snapshot, parsed, merge],
+    () => (baseSnapshot && planResult && fee !== undefined
+      ? checkRows(parsed.rows, { ...baseSnapshot, feeEstimate: fee }, { mergeDuplicates: merge })
+      : planResult),
+    [baseSnapshot, planResult, fee, parsed, merge],
   );
-  const plan: Plan | null = useMemo(() => (result && snapshot ? buildPlan(result.rows, snapshot) : null), [result, snapshot]);
 
   // Fee estimate for the current plan.
-  const planKey = plan ? plan.chunks.map((c) => c.calls.map((x) => `${x.kind}${x.dest}${x.amount}`).join()).join('|') : '';
   useEffect(() => {
     const api = apiRef.current;
     setFeeError(undefined);
-    if (!api || !plan || !sender || !plan.transfers) { setFee(undefined); return; }
+    if (!api || !plan || !sender || !plan.transfers) return;
     let cancelled = false;
     const t = setTimeout(async () => {
       try {
         let total = 0n;
         for (const ch of plan.chunks) total += await estimateFee(buildBatch(api, ch), sender.address);
-        if (!cancelled) setFee(total);
+        if (!cancelled) setFeeState({ key: feeKey, value: total });
       } catch (e) {
         if (!cancelled) setFeeError((e as Error).message);
       }
     }, 500);
     return () => { cancelled = true; clearTimeout(t); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [planKey, sender?.address]);
+  }, [feeKey]);
 
   // Send.
   const send = useCallback(async () => {
@@ -290,6 +300,7 @@ export function useDropcheck() {
       const dests = Object.keys(outcomes).map((l) => rowsByLine.get(Number(l))!.account!);
       const after = await readAccounts(api, asset.id, [...dests, toHex(sender.address)]);
       for (const [l, o] of Object.entries(outcomes)) o.after = after[rowsByLine.get(Number(l))!.account!]?.assetBalance ?? null;
+      if (after[toHex(sender.address)]) setSenderState(after[toHex(sender.address)]);
       setRun({ phase: 'done', results, outcomes, senderAfter: after[toHex(sender.address)]?.nativeFree, message: 'All batches included on-chain.' });
     } catch (e) {
       const msg = (e as Error).message;

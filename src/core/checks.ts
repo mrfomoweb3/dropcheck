@@ -3,7 +3,7 @@ import { parseAddress, h160FallbackAccount, isEthDerived, toSs58 } from './addre
 import { parseUnits, formatUnits } from './units';
 import { hexToU8a, u8aToHex } from '@polkadot/util';
 import type {
-  AccountState, ChainSnapshot, CheckResult, CheckedRow, Issue, RawRow, RunIssue, Severity,
+  ChainSnapshot, CheckResult, CheckedRow, Issue, RawRow, RunIssue, Severity,
 } from './types';
 
 export interface CheckOptions {
@@ -11,9 +11,6 @@ export interface CheckOptions {
 }
 
 const RANK: Record<Severity, number> = { green: 0, info: 1, amber: 2, red: 3 };
-const EMPTY: AccountState = {
-  nativeFree: 0n, providers: 0, consumers: 0, sufficients: 0, assetBalance: null, assetStatus: null,
-};
 
 export function topupAmount(snap: Pick<ChainSnapshot, 'ed' | 'topupBufferBps'>): bigint {
   return snap.ed + (snap.ed * snap.topupBufferBps) / 10_000n;
@@ -168,10 +165,14 @@ export function checkRows(raws: RawRow[], snap: ChainSnapshot, opts: CheckOption
   }
 
   // Chain-state checks per included row.
+  // A wallet missing from snap.accounts has not been read yet: its state is unknown, NOT empty.
+  // Treating it as empty would invent top-ups (and a wrong plan) while reads are in flight.
   const topup = topupAmount(snap);
+  let pending = 0;
   for (const r of rows) {
     if (!r.account || r.amount === undefined || r.action === 'merged' || r.action === 'excluded') continue;
-    const st = snap.accounts[r.account] ?? EMPTY;
+    const st = snap.accounts[r.account];
+    if (!st) { pending++; continue; }
     const holds = st.assetBalance !== null;
     if (st.assetStatus === 'Frozen' || st.assetStatus === 'Blocked') {
       r.issues.push({
@@ -186,7 +187,7 @@ export function checkRows(raws: RawRow[], snap: ChainSnapshot, opts: CheckOption
         code: 'BELOW_MIN_BALANCE', severity: 'red',
         message: `New holders must receive at least ${fmt(asset.minBalance)} ${sym}. This row sends ${fmt(r.amount)}.`,
         fix: `Raise the amount to ${fmt(asset.minBalance)} or more. Skipped for now.`,
-        why: `Asset min_balance = ${asset.minBalance} base units; a transfer creating a new holder below it fails (BelowMinimum).`,
+        why: `Asset min_balance = ${asset.minBalance} base units; a transfer creating a new holder below it fails with TokenError.BelowMinimum (observed on a V3 fork).`,
       });
       continue;
     }
@@ -195,7 +196,7 @@ export function checkRows(raws: RawRow[], snap: ChainSnapshot, opts: CheckOption
         code: 'NO_PROVIDER', severity: 'amber',
         message: `This wallet has no ${nsym}, so it can't hold ${sym} yet. We'll send ${nfmt(topup)} ${nsym} first.`,
         fix: `Top up ${nfmt(topup)} ${nsym}, then send.`,
-        why: `${sym} is not a "sufficient" asset, so the recipient needs a native balance (a provider reference) to hold it. Without one the transfer fails with UnavailableConsumer. Top-up = existential deposit ${nfmt(snap.ed)} + buffer.`,
+        why: `${sym} is not a "sufficient" asset, so the recipient needs a native balance (a provider reference) to hold it. Without one the transfer fails with TokenError.CannotCreate (observed on a V3 fork). Top-up = existential deposit ${nfmt(snap.ed)} + buffer.`,
       });
       r.action = 'topup+send';
     }
@@ -244,6 +245,12 @@ export function checkRows(raws: RawRow[], snap: ChainSnapshot, opts: CheckOption
         why: 'transfer_keep_alive refuses to take the sender below the existential deposit, so the whole batch would fail.',
       });
     }
+  }
+  if (pending > 0) {
+    runIssues.push({
+      code: 'OK', severity: 'info', blocking: true,
+      message: `Still reading chain state for ${pending} wallet${pending === 1 ? '' : 's'}…`,
+    });
   }
   if (included.length === 0) {
     runIssues.push({ code: 'OK', severity: 'info', blocking: true, message: 'No sendable rows yet.' });

@@ -144,6 +144,18 @@ describe('check engine (A3)', () => {
     expect(checkRows([row(a.ss58, '10')], s, opts).runIssues.some((i) => i.code === 'SENDER_SHORT_NATIVE')).toBe(false);
   });
 
+  it('unread wallets are unknown, not empty: no invented top-ups, run blocked until read', () => {
+    const a = acct(5);
+    const res = checkRows([row(a.ss58, '10')], snapshot({ accounts: {} }), opts);
+    expect(codes(res.rows[0])).toEqual(['OK']);
+    expect(res.rows[0].action).toBe('send');
+    expect(res.summary.topups).toBe(0);
+    expect(res.runIssues.find((i) => /Still reading chain state/.test(i.message))?.blocking).toBe(true);
+    const loaded = checkRows([row(a.ss58, '10')], snapshot({ accounts: { [a.hex]: empty() } }), opts);
+    expect(loaded.summary.topups).toBe(1);
+    expect(loaded.runIssues.some((i) => /Still reading/.test(i.message))).toBe(false);
+  });
+
   it('summary counts', () => {
     const [ok, fresh] = [acct(1), acct(5)];
     const res = checkRows(

@@ -12,7 +12,8 @@ export function SummaryBar({ dc }: { dc: Dropcheck }) {
   const s = result.summary;
   const blocking = result.runIssues.filter((i) => i.blocking);
   const identityOk = conn.status === 'ready' && conn.identityOk;
-  const canSend = identityOk && !!sender && blocking.length === 0 && fee !== undefined && run.phase !== 'signing' && run.phase !== 'done';
+  // Locked while chain state is loading or the fee is for an older plan (fee is undefined then).
+  const canSend = identityOk && !!sender && !dc.checking && blocking.length === 0 && fee !== undefined && run.phase !== 'signing' && run.phase !== 'done';
   const n = (v: bigint) => formatUnits(v, identity.decimals, 6);
 
   return (
