@@ -1,16 +1,17 @@
 import Link from 'next/link';
 import { Logo } from './components/Logo';
+import { LandingMotion } from './components/LandingMotion';
 
 const NAV = [
   { href: '#how', label: 'How it works' },
   { href: '#checks', label: 'Checks' },
   { href: '#why', label: 'Why Portaldot' },
-  { href: '/app', label: 'Launch app' },
 ];
 
 export default function Landing() {
   return (
-    <main>
+    <main className="landing-shell">
+      <LandingMotion />
       <Hero />
       <How />
       <Checks />
@@ -22,7 +23,7 @@ export default function Landing() {
 
 function Hero() {
   return (
-    <section className="relative isolate flex min-h-[100svh] flex-col overflow-hidden">
+    <section className="relative isolate flex min-h-[100svh] flex-col overflow-hidden hero-section">
       <picture className="absolute inset-0 -z-20">
         <source media="(max-width: 640px)" srcSet="/landscape-sm.jpg" />
         <img src="/landscape.jpg" alt="" className="h-full w-full object-cover object-[50%_60%]" />
@@ -30,14 +31,16 @@ function Hero() {
       {/* Darken the sky slightly so white type reads, and fade the bottom toward the page. */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#1d3a5c]/50 via-[#1d3a5c]/25 to-transparent" />
 
-      <nav className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-6 sm:px-10">
+      <nav aria-label="Main navigation" className="landing-nav">
         <Logo light />
-        <ul className="hidden items-center gap-8 text-[15px] font-medium text-white/95 md:flex">
+        <ul className="landing-nav-links text-[15px] font-medium text-white/95">
           {NAV.map((n) => (
-            <li key={n.href}><Link href={n.href} className="text-shadow transition hover:text-white hover:opacity-80">{n.label}</Link></li>
+            <li key={n.href}><Link href={n.href} className="nav-link text-shadow">{n.label}</Link></li>
           ))}
         </ul>
-        <Link href="/app" className="btn bg-white/90 text-zinc-900 backdrop-blur hover:bg-white md:hidden">Launch app</Link>
+        <Link href="/app" className="btn nav-cta bg-white text-zinc-900 hover:bg-zinc-100">
+          Launch app <span aria-hidden="true">↗</span>
+        </Link>
       </nav>
 
       <div className="mx-auto flex w-full max-w-4xl flex-col items-center px-5 pt-[6vh] text-center text-white">
@@ -63,7 +66,7 @@ function Hero() {
 /** The stacked "check result" cards, echoing a real Dropcheck row. */
 function HeroCards() {
   return (
-    <div className="relative mx-auto mt-auto w-full max-w-md px-5 pb-0 pt-24 animate-rise [animation-delay:.35s]">
+    <div className="relative mx-auto mt-auto w-full max-w-md px-5 pb-5 pt-24 animate-rise [animation-delay:.35s]">
       <div className="absolute inset-x-16 top-6 h-28 rotate-[4deg] rounded-2xl border border-white/60 bg-white/50 backdrop-blur-md" aria-hidden />
       <div className="absolute inset-x-10 top-12 flex h-28 rotate-[3deg] items-start rounded-2xl border border-white/70 bg-white/80 px-5 pt-3.5 shadow-lg backdrop-blur-md" aria-hidden>
         <span className="inline-flex items-center gap-1.5 text-sm font-medium text-sky-700">
@@ -72,7 +75,7 @@ function HeroCards() {
         </span>
       </div>
 
-      <div className="relative animate-float rounded-t-3xl border border-white/80 bg-white/95 p-6 pb-7 text-left text-zinc-900 shadow-[0_30px_80px_-20px_rgba(20,40,15,.55)] backdrop-blur-xl">
+      <div className="relative animate-float rounded-3xl border border-white/80 bg-white/95 p-6 pb-7 text-left text-zinc-900 shadow-[0_30px_80px_-20px_rgba(20,40,15,.55)] backdrop-blur-xl">
         <span className="inline-flex items-center gap-1.5 rounded-lg bg-meadow-50 px-2.5 py-1 text-sm font-medium text-meadow-700">
           <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden>
             {[0, 45, 90, 135, 180, 225, 270, 315].map((d) => (
@@ -121,12 +124,12 @@ const STEPS = [
 
 function How() {
   return (
-    <section id="how" className="mx-auto max-w-7xl scroll-mt-8 px-5 py-24 sm:px-10">
+    <section id="how" className="reveal-section mx-auto max-w-7xl scroll-mt-8 px-5 py-24 sm:px-10">
       <p className="font-script text-2xl text-meadow-700">three steps, one signature</p>
       <h2 className="mt-1 max-w-2xl text-4xl font-semibold tracking-[-0.03em] sm:text-5xl">From a messy list to verified transfers in under a minute.</h2>
       <div className="mt-12 grid gap-5 md:grid-cols-3">
         {STEPS.map((s) => (
-          <div key={s.n} className="rounded-3xl border border-zinc-200/80 bg-white p-7 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+          <div key={s.n} className="landing-card rounded-3xl border border-zinc-200/80 bg-white p-7 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
             <div className="font-mono text-sm text-meadow-600">{s.n}</div>
             <h3 className="mt-6 text-xl font-semibold tracking-tight">{s.title}</h3>
             <p className="mt-2 text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-400">{s.body}</p>
@@ -153,7 +156,7 @@ const TONE = {
 
 function Checks() {
   return (
-    <section id="checks" className="relative isolate scroll-mt-8 overflow-hidden py-24">
+    <section id="checks" className="reveal-section relative isolate scroll-mt-8 overflow-hidden py-24">
       <img src="/landscape-sm.jpg" alt="" className="absolute inset-0 -z-20 h-full w-full object-cover object-bottom opacity-90" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#f5f4ee] via-[#f5f4ee]/40 to-[#f5f4ee] dark:from-zinc-950 dark:via-zinc-950/60 dark:to-zinc-950" />
       <div className="mx-auto max-w-7xl px-5 sm:px-10">
@@ -161,7 +164,7 @@ function Checks() {
         <h2 className="mt-1 max-w-2xl text-4xl font-semibold tracking-[-0.03em] sm:text-5xl">The mistakes that silently strand tokens.</h2>
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {CHECKS.map((c) => (
-            <div key={c.label} className="card p-5">
+            <div key={c.label} className="landing-card card p-5">
               <div className="flex items-center gap-2 font-semibold">
                 <span className={`h-2 w-2 rounded-full ${TONE[c.tone]}`} />{c.label}
               </div>
@@ -181,7 +184,7 @@ function Why() {
     ['Revive address mapping', 'MetaMask users get their tokens at the native account the runtime itself uses.'],
   ];
   return (
-    <section id="why" className="mx-auto grid max-w-7xl scroll-mt-8 gap-12 px-5 py-24 sm:px-10 lg:grid-cols-[1fr_1.3fr]">
+    <section id="why" className="reveal-section mx-auto grid max-w-7xl scroll-mt-8 gap-12 px-5 py-24 sm:px-10 lg:grid-cols-[1fr_1.3fr]">
       <div>
         <p className="font-script text-2xl text-meadow-700">built on portaldot</p>
         <h2 className="mt-1 text-4xl font-semibold tracking-[-0.03em] sm:text-5xl">No backend. No keys. Just the chain.</h2>
@@ -204,7 +207,7 @@ function Why() {
 
 function Closing() {
   return (
-    <section className="px-3 pb-3 sm:px-5 sm:pb-5">
+    <section className="reveal-section px-3 pb-3 sm:px-5 sm:pb-5">
       <div className="relative isolate overflow-hidden rounded-[2rem] px-6 py-24 text-center text-white">
         <img src="/landscape.jpg" alt="" className="absolute inset-0 -z-20 h-full w-full object-cover object-top" />
         <div className="absolute inset-0 -z-10 bg-[#1d3a5c]/35" />
